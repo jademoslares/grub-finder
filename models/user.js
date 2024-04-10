@@ -37,23 +37,24 @@ const userSchema = new Schema({
 userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
+  next();
 });
 
-// Define schema for customer extending base user schema
+// Define customer schema
 const customerSchema = new Schema({
-  // Add any additional fields specific to customers
-  address: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  // Other customer-specific fields can be added here
 });
 
-// Define schema for vendor extending base user schema
+// Define vendor schema
 const vendorSchema = new Schema({
-  // Add any additional fields specific to vendors
-  company: { type: String, required: true },
+  user: { type: Schema.Types.ObjectId, ref: 'User' },
+  // Other vendor-specific fields can be added here
 });
 
-// Extend base user schema with discriminator based on 'role'
+// Define models
 const User = mongoose.model('User', userSchema);
-User.discriminator('customer', customerSchema);
-User.discriminator('vendor', vendorSchema);
+const Customer = mongoose.model('Customer', customerSchema);
+const Vendor = mongoose.model('Vendor', vendorSchema);
 
-module.exports = User;
+module.exports = { User, Customer, Vendor };

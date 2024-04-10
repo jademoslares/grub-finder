@@ -12,6 +12,8 @@ async function create(req, res) {
   try {
     // Add the user to the db
     const user = await User.create(req.body);
+    
+    console.log('this is the user', user)
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
