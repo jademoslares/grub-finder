@@ -4,8 +4,9 @@ const bcrypt = require('bcrypt');
 
 const SALT_ROUNDS = 6;
 
+// Define a base user schema
 const userSchema = new Schema({
-  name: {type: String, required: true},
+  name: { type: String, required: true },
   email: {
     type: String,
     unique: true,
@@ -16,22 +17,45 @@ const userSchema = new Schema({
   password: {
     type: String,
     required: true
+  },
+  role: {
+    type: String,
+    enum: ['customer', 'vendor'], // Enumerating the possible roles
+    required: true
   }
 }, {
   timestamps: true,
   toJSON: {
-    transform: function(doc, ret) {
+    transform: function (doc, ret) {
       delete ret.password;
       return ret;
     }
   }
 });
 
-userSchema.pre('save', async function(next) {
-  // 'this' is the user document
+// Middleware to hash the password before saving
+userSchema.pre('save', async function (next) {
   if (!this.isModified('password')) return next();
-  // Replace the password with the computed hash
   this.password = await bcrypt.hash(this.password, SALT_ROUNDS);
 });
 
-module.exports = mongoose.model('User', userSchema);
+// Define schema for customer extending base user schema
+const customerSchema = new Schema({
+  // Add any additional fields specific to customers
+  address: { type: String, required: true },
+  // Other customer-specific fields can be added here
+});
+
+// Define schema for vendor extending base user schema
+const vendorSchema = new Schema({
+  // Add any additional fields specific to vendors
+  company: { type: String, required: true },
+  // Other vendor-specific fields can be added here
+});
+
+// Extend base user schema with discriminator based on 'role'
+const User = mongoose.model('User', userSchema);
+User.discriminator('customer', customerSchema);
+User.discriminator('vendor', vendorSchema);
+
+module.exports = User;
