@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const User = require('../../models/user');
+const {User,Customer,Vendor} = require('../../models/user');
 
 module.exports = {
   create,
@@ -12,9 +12,31 @@ async function create(req, res) {
   try {
     // Add the user to the db
     const user = await User.create(req.body);
+    // Depending on the role, create a corresponding entry
+    if (user.role === 'customer') {
+      // Create a customer linked to the user
+      const customerData = {
+        user: user._id,
+        address: 'Default Address',
+        phone: 'Default Phone Number',
+        paymentinfo: 'Default Info Name',
+      };
+      await Customer.create(customerData);
+    } else if (user.role === 'vendor') {
+      // Create a vendor linked to the user
+      const vendorData = {
+        user: user._id,
+        companyname: 'Default Company Name',
+        address: 'Default Address',
+        phone: 'Default Phone Number',
+      };
+      await Vendor.create(vendorData);
+    }
+
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
+    console.log(err);
     res.status(400).json(err);
   }
 }
