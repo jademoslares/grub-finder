@@ -43,13 +43,17 @@ userSchema.pre('save', async function (next) {
 // Define customer schema
 const customerSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
-  // Other customer-specific fields can be added here
+  address: { type: String, required: true },
+  phone: { type: String, required: true },
+  paymentinfo: { type: String, required: true },
 });
 
 // Define vendor schema
 const vendorSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
-  // Other vendor-specific fields can be added here
+  companyname: { type: String, required: true },
+  address: { type: String, required: true },
+  phone: { type: String, required: true },
 });
 
 // Define models
