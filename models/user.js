@@ -6,7 +6,7 @@ const SALT_ROUNDS = 6;
 
 // Define a base user schema
 const userSchema = new Schema({
-  name: { type: String, required: true },
+  username: { type: String, required: true },
   email: {
     type: String,
     unique: true,
@@ -43,14 +43,12 @@ userSchema.pre('save', async function (next) {
 const customerSchema = new Schema({
   // Add any additional fields specific to customers
   address: { type: String, required: true },
-  // Other customer-specific fields can be added here
 });
 
 // Define schema for vendor extending base user schema
 const vendorSchema = new Schema({
   // Add any additional fields specific to vendors
   company: { type: String, required: true },
-  // Other vendor-specific fields can be added here
 });
 
 // Extend base user schema with discriminator based on 'role'
