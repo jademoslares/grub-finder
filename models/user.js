@@ -43,6 +43,8 @@ userSchema.pre('save', async function (next) {
 // Define customer schema
 const customerSchema = new Schema({
   user: { type: Schema.Types.ObjectId, ref: 'User' },
+  firstname: { type: String, required: true },
+  lastname: { type: String, required: true },
   address: { type: String, required: true },
   phone: { type: String, required: true },
   paymentinfo: { type: String, required: true },
