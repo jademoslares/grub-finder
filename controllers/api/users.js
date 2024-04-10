@@ -17,12 +17,25 @@ async function create(req, res) {
       // Create a customer linked to the user
       const customerData = {
         user: user._id,
+        firstname: 'Fist Name',
+        lastname: 'Last Name',
         address: 'Default Address',
         phone: 'Default Phone Number',
         paymentinfo: 'Default Info Name',
       };
       await Customer.create(customerData);
     } else if (user.role === 'vendor') {
+      // Create a customer linked to the user
+      const customerData = {
+        user: user._id,
+        firstname: 'Fist Name',
+        lastname: 'Last Name',
+        address: 'Default Address',
+        phone: 'Default Phone Number',
+        paymentinfo: 'Default Info Name',
+      };
+      
+      await Customer.create(customerData);
       // Create a vendor linked to the user
       const vendorData = {
         user: user._id,
