@@ -12,6 +12,10 @@ export default function NavBar({ user, setUser }) {
       <Link to="/orders">Order History</Link>
       &nbsp; | &nbsp;
       <Link to="/orders/new">New Order</Link>
+      &nbsp; | &nbsp;
+      {user && user.role === 'vendor' && (
+        <Link to="/admin">Admin Portal</Link>
+      )}
       &nbsp;&nbsp;
       <span>Welcome, {user.username}</span>
       &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
