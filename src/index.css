@@ -11,6 +11,7 @@
 }
 
 *, *:before, *:after {
+  margin: 0;
   box-sizing: border-box;
 }
 
@@ -24,6 +25,7 @@ body {
   background-color: var(--tan-4);
   padding: 2vmin;
   height: 100vh;
+  background: linear-gradient(0deg, #000000, #fdfdfd);
 }
 
 code {
