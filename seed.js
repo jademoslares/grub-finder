@@ -1,11 +1,10 @@
 require('dotenv').config();
 require('./config/database');
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
 const Category = require('./models/category');
 const MenuItem = require('./models/menuItem');
 const Restaurant = require('./models/restaurant');
+const Schema = require('mongoose').Schema;
 
 (async function() {
 await Category.deleteMany({});
@@ -22,18 +21,17 @@ const categories = await Category.create([
 
 await MenuItem.deleteMany({});
 const menuItems = await MenuItem.create([
-  {item_name:"",
-  serving_size:"",
-  item_cost: 2.00,
+  {item_name:"Oodles of Noodles",
+  item_cost: 12.00,
   restaurant_id: { type: Schema.Types.ObjectId, ref: 'Restaurant' }
   }
 ]);
 
 
 await Restaurant.deleteMany({});
-const restaurant = await Restaurant.create([
+const restaurants = await Restaurant.create([
   {
-    restaurant_id: "",
+    restaurant_id: { type: Schema.Types.ObjectId, ref: 'Restaurant' },
     vendor_id: "",
     restaurant_name: "Gu Wei Noodles & Grill",
     description: "Szechuan, Noodles, Restaurants, Chinese",
@@ -59,7 +57,7 @@ const restaurant = await Restaurant.create([
 ]);
 
 
-console.log(MenuItems);
+console.log(menuItems);
 console.log(restaurants);
 console.log(categories);
 

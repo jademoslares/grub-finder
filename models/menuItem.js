@@ -1,7 +1,13 @@
 const mongoose = require('mongoose');
-//require the restaurant to be sure the restaurant model is loaded before the menu model
+const Schema = mongoose.Schema;
+const restaurant_id = require('./restaurant');
 
-require('./restaurant');
-const menuSchema = require('./menuItemSchema');
+const menuItemSchema = new Schema({
+  item_name: { type: String, required: true },
+  item_cost: { type: Number, required: true },
+  restaurant_id: { type: Schema.Types.ObjectId, ref: 'Restaurant' },
+}, {
+  timestamps: true
+});
 
-module.exports = mongoose.model('Menu', menuSchema);
+module.exports = menuItemSchema;
