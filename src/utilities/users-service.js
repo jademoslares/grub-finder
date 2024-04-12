@@ -49,3 +49,7 @@ export function checkToken() {
     // make it a Date object for more flexibility
     .then(dateStr => new Date(dateStr));
 }
+
+export function getOne(id) {
+  return usersAPI.getOne(id);
+}
