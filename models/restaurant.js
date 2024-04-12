@@ -13,7 +13,7 @@ const restaurantSchema = new Schema({
     state: { type: String, required: true },
     postal_code: { type: String, required: true },
   },
-  open_hours: { type: String },
+  open_hours: { type: Object },
   sortOrder: Number
 }, {
   timestamps: true
