@@ -11,16 +11,16 @@ export default function RestaurantPage() {
         },
         {
             name: 'Restaurant 2',
-            url: 'https://source.unsplash.com/random/1000x1000?restaurant',
+            url: 'https://source.unsplash.com/random/1000x1000?food',
         },
     ]);
 
 
 
     return (
-        <div className='CardTinder'>
+        <div className='CardRestaurant'>
 
-            <div className='cardTinder_container'>
+            <div className='cardRestaurant_container'>
                 {restaurant.map(restaurant => (
 
                     <CardRestaurant

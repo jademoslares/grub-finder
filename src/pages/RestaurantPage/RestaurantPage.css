@@ -22,7 +22,7 @@
     color: white;
 }
 
-.cardContainer {
+.cardRestaurant_container {
     display: flex;
     justify-content: center;
     margin: 5vh;
