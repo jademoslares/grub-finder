@@ -4,7 +4,7 @@ import CardRestaurant from 'react-tinder-card'
 
 export default function RestaurantPage() {
 
-    const [restaurant, setRestaurant] = useState([
+    const [restaurant] = useState([
         {
             name: 'Restaurant 1',
             url: 'https://source.unsplash.com/random/1000x1000?restaurant',
@@ -14,8 +14,6 @@ export default function RestaurantPage() {
             url: 'https://source.unsplash.com/random/1000x1000?food',
         },
     ]);
-
-
 
     return (
         <div className='CardRestaurant'>

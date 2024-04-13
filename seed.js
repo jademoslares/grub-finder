@@ -25,7 +25,7 @@ const Schema = require('mongoose').Schema;
   const restaurants = await Restaurant.create([
     {
       restaurant_id: { type: Schema.Types.ObjectId, ref: 'Restaurant' },
-      vendor_id: "",
+      vendor_id: "123456",
       restaurant_name: "Gu Wei Noodles & Grill",
       description: "Szechuan, Noodles, Restaurants, Chinese",
       // menu: [{ type: Schema.Types.ObjectId, ref: 'MenuItem' }],
@@ -59,7 +59,7 @@ const Schema = require('mongoose').Schema;
     ]);
   }
 
-  console.log(createdMenuItems);
+  console.log(menuItems);
   console.log(restaurants);
   console.log(categories);
 
