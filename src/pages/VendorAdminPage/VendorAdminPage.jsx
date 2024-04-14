@@ -33,12 +33,3 @@ export default function VendorAdminPage() {
     </div>
   );
 }
-// hrerererer
-
-// herererere 2
-
-// hererer
-
-// hererer
-
-// hereree

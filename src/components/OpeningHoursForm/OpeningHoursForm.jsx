@@ -3,7 +3,7 @@ import "./OpeningHoursForm.css";
 
 export default function OpeningHours() {
   const [openingHours, setOpeningHours] = useState({});
-  const daysOfWeek = ['monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+  const daysOfWeek = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
 
   function handleDayChange(evt) {
     const { name, checked } = evt.target;
@@ -27,7 +27,7 @@ export default function OpeningHours() {
         {daysOfWeek.map(day => (
           <div key={day} className="day-selector">
             <label>
-              {day.charAt(0).toUpperCase() + day.slice(1)}:
+              {day.charAt(0) + day.slice(1)}:
               <input type="checkbox" name={day} checked={openingHours[day]} onChange={handleDayChange} />
             </label>
             {openingHours[day] && (
@@ -51,10 +51,3 @@ export default function OpeningHours() {
     </div>
   );
 }
-
-
-// herere
-
-// hereeee
-
-//  hererere
