@@ -1,0 +1,34 @@
+.opening-hours {
+  margin-top: 20px;
+}
+
+.days-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.day-selector {
+  margin-bottom: 10px;
+}
+
+.time-inputs {
+  display: flex;
+  padding: 10px; 
+}
+
+
+.time-inputs label {
+  margin-bottom: 10px;
+}
+
+.time-inputs input {
+  width: 250px;
+  height: 50px;
+  margin-right: 50px;
+}
+
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
