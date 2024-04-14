@@ -11,6 +11,8 @@ export default function NavBar({ user, setUser }) {
     <nav>
       <span>Welcome, {user.username}</span>
       &nbsp; | &nbsp;
+      {user.role === 'vendor' && <Link to="/vendor">Vendor Settings</Link>}
+      &nbsp; | &nbsp;
       <Link to="/restaurants">Restaurants</Link>
       &nbsp; | &nbsp;
       <Link to="/orders">Order History</Link>
