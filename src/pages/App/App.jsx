@@ -6,7 +6,9 @@ import AuthPage from '../AuthPage/AuthPage';
 import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
+import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -19,7 +21,9 @@ export default function App() {
           <>
             <NavBar user={user} setUser={setUser} />
             <Routes>
-              {/* Route components in here ↓ */}
+
+              {/* Route components in here */}
+              <Route path="/restaurants" element={<RestaurantPage />}/>
               <Route path="/orders/new" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
               <Route path="/admin" element={<VendorAdminPage />} />
