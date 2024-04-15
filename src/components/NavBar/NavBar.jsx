@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom';
-import * as userService from '../../utilities/users-service';
+import { Link } from "react-router-dom";
+import * as userService from "../../utilities/users-service";
+import "./NavBar.css";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -8,18 +9,29 @@ export default function NavBar({ user, setUser }) {
   }
 
   return (
-    <nav>
-      <span>Let's find some grub, {user.username}!</span>
-      &nbsp; | &nbsp;
-      {user.role === 'vendor' && <Link to="/settings">Settings</Link>}
-      &nbsp; | &nbsp;
-      <Link to="/restaurants">Restaurants</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders">Order History</Link>
-      &nbsp; | &nbsp;
-      <Link to="/orders/new">New Order</Link>
-      &nbsp; | &nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-    </nav>
+    <>
+      <nav id="mySidenav" className="navbar">
+        <Link to="/orders" id="orderhistory">
+          Order History
+        </Link>
+        <Link to="/orders/new" id="neworder">
+          New Order
+        </Link>
+        <Link to="/restaurants" id="restaurants">Restaurants</Link>
+        {user.role === 'vendor' && <Link to="/settings" id="settings">Settings</Link>}
+      </nav>
+      <div className="logo">
+        Grub Finder
+      </div>
+      <div className="dropdown">
+        <button className="dropbtn">Welcome, {user.username}</button>
+        <div className="dropdown-content">
+          <Link to="/profile">Profile</Link>
+          <Link to="" onClick={handleLogOut}>
+            Log Out
+          </Link>
+        </div>
+      </div>
+    </>
   );
 }
-

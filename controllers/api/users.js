@@ -5,7 +5,8 @@ const {User,Customer,Vendor} = require('../../models/user');
 module.exports = {
   create,
   login,
-  checkToken
+  checkToken,
+  getUser
 };
 
 async function create(req, res) {
@@ -70,6 +71,23 @@ async function login(req, res) {
     res.json(token);
   } catch (err) {
     res.status(400).json('Bad Credentials');
+  }
+}
+
+async function getUser(req, res) {
+  try{
+    const user = await User.findOne({email: req.params.id});
+    if (!user) throw new Error();
+    if (user.role === 'customer') {
+      const customer = await Customer.findOne({user: user._id});
+      res.json({user, customer});
+    } else if (user.role === 'vendor') {
+      const customer = await Customer.findOne({user: user._id});
+      const vendor = await Vendor.findOne({user: user._id});
+      res.json({user, customer, vendor});
+    }
+  } catch (err) {
+    res.status(400).json('Profile not found');
   }
 }
 

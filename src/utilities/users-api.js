@@ -13,6 +13,10 @@ export function checkToken() {
   return sendRequest(`${BASE_URL}/check-token`);
 }
 
+export function getOne(id){
+  return sendRequest(`${BASE_URL}/${id}`);
+}
+
 // export async function signUp(userData) {
 //   // Fetch uses an options object as a second arg
 //   // to make requests other than GET, include data,
