@@ -7,6 +7,9 @@ import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import NavBar from "../../components/NavBar/NavBar";
 import ProfilePage from "../ProfilePage/ProfilePage";
+import RestaurantPage from '../RestaurantPage/RestaurantPage';
+import SettingsPage from '../SettingsPage/SettingsPage';
+
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -21,10 +24,12 @@ export default function App() {
             <div className="background-card">
             <Routes>
               {/* Route components in here */}
-
+              <Route path="/restaurants" element={<RestaurantPage />}/>
               <Route path="/orders/new" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
               <Route path="/profile" element={<ProfilePage user={user} />} />
+              <Route path="/settings" element={<SettingsPage />} />
+
             </Routes>
             </div>
           </div>
