@@ -19,11 +19,8 @@ export default function NavBar({ user, setUser }) {
         </Link>
         <Link to="/restaurants" id="restaurants">Restaurants</Link>
         {user.role === 'vendor' && <Link to="/settings" id="settings">Settings</Link>}
-      </nav>
-      <div className="logo">
-        Grub Finder
-      </div>
-      <div className="dropdown">
+        {/* welcome user */}
+        <div className="dropdown">
         <button className="dropbtn">Welcome, {user.username}</button>
         <div className="dropdown-content">
           <Link to="/profile">Profile</Link>
@@ -32,6 +29,11 @@ export default function NavBar({ user, setUser }) {
           </Link>
         </div>
       </div>
+      </nav>
+      <div className="logo">
+        Grub Finder
+      </div>
+    
     </>
   );
 }

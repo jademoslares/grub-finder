@@ -22,14 +22,13 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <div className="pageHolder">
             <div className="background-card">
-            <Routes>
               {/* Route components in here */}
+            <Routes>
               <Route path="/restaurants" element={<RestaurantPage />}/>
               <Route path="/orders/new" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route path="/settings" element={<SettingsPage />} />
-
             </Routes>
             </div>
           </div>

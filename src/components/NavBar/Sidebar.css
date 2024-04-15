@@ -1,0 +1,31 @@
+/* Sidebar animation styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 90vh;
+  width: 200px; /* Adjust width as needed */
+  background-color: #f4f4f4;
+  overflow-x: hidden;
+  transition: width 0.5s;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.sidebar ul li {
+  padding: 10px;
+}
+
+.sidebar ul li a {
+  display: block;
+  text-decoration: none;
+  color: #333;
+  transition: padding-left 0.5s;
+}
+
+.sidebar ul li a:hover {
+  padding-left: 20px; /* Adjust padding-left for slide-out effect */
+}
