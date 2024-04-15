@@ -7,7 +7,7 @@ import NewOrderPage from '../NewOrderPage/NewOrderPage';
 import OrderHistoryPage from '../OrderHistoryPage/OrderHistoryPage';
 import NavBar from '../../components/NavBar/NavBar';
 import RestaurantPage from '../RestaurantPage/RestaurantPage';
-import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
+import SettingsPage from '../SettingsPage/SettingsPage';
 
 export default function App() {
   const [user, setUser] = useState(getUser());
@@ -25,7 +25,7 @@ export default function App() {
               {/* Route components in here ↓ */}
               <Route path="/orders/new" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
-              <Route path="/admin" element={<VendorAdminPage />} />
+              <Route path="/settings" element={<SettingsPage />} />
             </Routes>
           </>
           :

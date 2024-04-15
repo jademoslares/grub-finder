@@ -9,24 +9,16 @@ export default function NavBar({ user, setUser }) {
 
   return (
     <nav>
-      <span>Welcome, {user.username}</span>
+      <span>Let's find some grub, {user.username}!</span>
       &nbsp; | &nbsp;
-      {user.role === 'vendor' && <Link to="/vendor">Vendor Settings</Link>}
+      {user.role === 'vendor' && <Link to="/settings">Settings</Link>}
       &nbsp; | &nbsp;
       <Link to="/restaurants">Restaurants</Link>
       &nbsp; | &nbsp;
       <Link to="/orders">Order History</Link>
       &nbsp; | &nbsp;
       <Link to="/orders/new">New Order</Link>
-      &nbsp; | &nbsp;
-      {user && user.role === 'vendor' && (
-        <Link to="/admin">Admin Portal</Link>
-      )}
-      &nbsp;&nbsp;
-      <span>Welcome, {user.username}</span>
-      &nbsp;&nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
-      &nbsp; | &nbsp;
-      <Link to="" onClick={handleLogOut}>Log Out</Link>
+      &nbsp; | &nbsp;<Link to="" onClick={handleLogOut}>Log Out</Link>
     </nav>
   );
 }
