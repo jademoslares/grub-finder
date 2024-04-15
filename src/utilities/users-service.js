@@ -53,3 +53,7 @@ export function checkToken() {
 export function getOne(id) {
   return usersAPI.getOne(id);
 }
+
+export function updateUser(id, data) {
+  return usersAPI.updateUser(id, data);
+}
