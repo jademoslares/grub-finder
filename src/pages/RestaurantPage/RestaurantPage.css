@@ -13,14 +13,13 @@
     border-radius: 20px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 20px 25px 0 rgba(0, 0, 0, 0.365);
+
+    background-color: white;
 }
 
 .card h2 {
-    position: absolute;
     bottom: 10px;
-    color: white;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.95);
+    color: black;
 }
 
 .cardRestaurant_container {

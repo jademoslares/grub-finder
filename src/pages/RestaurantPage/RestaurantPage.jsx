@@ -1,47 +1,28 @@
-import React, {useState} from 'react';
-import './RestaurantPage.css';
-import CardRestaurant from 'react-tinder-card'
+import React, { useState, useEffect } from "react";
+import "./RestaurantPage.css";
+import CardRestaurant from "react-tinder-card";
+import yelpData from "../../data/yelpData";
 
 export default function RestaurantPage() {
+  const [restaurants, setRestaurants] = useState(yelpData);
 
-    const [restaurant] = useState([
-        {
-            name: 'Restaurant 1',
-            url: 'https://source.unsplash.com/random/1000x1000?restaurant',
-        },
-        {
-            name: 'Restaurant 2',
-            url: 'https://source.unsplash.com/random/1000x1000?food',
-        },
-    ]);
-
-    return (
-        <div className='CardRestaurant'>
-
-            <div className='cardRestaurant_container'>
-                {restaurant.map(restaurant => (
-
-                    <CardRestaurant
-                    className='swipe'
-                    key={restaurant.name}
-                    preventSwipe={['up', 'down']}
-                    >
-
-                        <div 
-                        className='card'
-                        style={{backgroundImage: `url(${restaurant.url}`}}
-                        >
-
-                            <h2>{restaurant.name}</h2>
-
-                        </div>
-
-                    </CardRestaurant>
-
-
-                ))}
+  return (
+    <div className="CardRestaurant">
+      <div className="cardRestaurant_container">
+        {restaurants.map((restaurant) => (
+          <CardRestaurant
+            className="swipe"
+            key={restaurant.name}
+            preventSwipe={["up", "down"]}
+            >
+              <h1>Restaurants</h1>
+            <div className="card">
+              <h1>Name: {restaurant.name}</h1>
+              <h2>Categories: {restaurant.categories}</h2>
             </div>
-
-        </div>
-    );
-  }
+          </CardRestaurant>
+        ))}
+      </div>
+    </div>
+  );
+}

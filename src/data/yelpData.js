@@ -1,4 +1,5 @@
-[
+export default
+[ 
   {
     "business_id": "mWMc6_wTdE0EUBKIGXDVfA",
     "name": "Perkiomen Valley Brewery",
