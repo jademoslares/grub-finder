@@ -20,7 +20,7 @@ async function updateUser(req, res) {
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, SALT_ROUNDS);
     }
-    
+    console.log(req.body);
     // Update the user in the db
     const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
     console.log(updatedUser);
@@ -31,8 +31,8 @@ async function updateUser(req, res) {
       const updatedCustomerData = {
         firstname: req.body.firstname || 'Default First Name',
         lastname: req.body.lastname || 'Default Last Name',
-        address: req.body.address || 'Default Address',
-        phone: req.body.phone || 'Default Phone Number',
+        address: req.body.customeraddress || 'Default Address',
+        phone: req.body.customerphone || 'Default Phone Number',
         paymentinfo: req.body.paymentinfo || 'Default Info Name',
       };
       await Customer.findOneAndUpdate({ user: userId }, updatedCustomerData);
@@ -41,8 +41,8 @@ async function updateUser(req, res) {
       const updatedCustomerData = {
         firstname: req.body.firstname || 'Default First Name',
         lastname: req.body.lastname || 'Default Last Name',
-        address: req.body.address || 'Default Address',
-        phone: req.body.phone || 'Default Phone Number',
+        address: req.body.customeraddress || 'Default Address',
+        phone: req.body.customerphone || 'Default Phone Number',
         paymentinfo: req.body.paymentinfo || 'Default Info Name',
       };
       await Customer.findOneAndUpdate({ user: userId }, updatedCustomerData);
@@ -50,8 +50,8 @@ async function updateUser(req, res) {
       // Update the vendor linked to the user
       const updatedVendorData = {
         companyname: req.body.companyname || 'Default Company Name',
-        address: req.body.address || 'Default Address',
-        phone: req.body.phone || 'Default Phone Number',
+        address: req.body.vendoraddress || 'Default Address',
+        phone: req.body.vendorphone || 'Default Phone Number',
       };
       await Vendor.findOneAndUpdate({ user: userId }, updatedVendorData);
     }

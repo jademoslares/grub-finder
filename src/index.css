@@ -26,7 +26,7 @@ body {
   padding: 2vmin;
   height: 100vh;
   /* Line below set background color */
-  background: linear-gradient(0deg, #000000, #fdfdfd);
+  /* background: linear-gradient(0deg, #000000, #fdfdfd); */
 }
 
 code {

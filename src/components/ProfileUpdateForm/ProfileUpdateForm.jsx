@@ -1,25 +1,20 @@
 import { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
 
-export default function ProfileUpdateForm({ user }) {
-  const [userData, setUserData] = useState({
+export default function ProfileUpdateForm({ user, setUpdateForm }) {
+  const [formData, setFormData] = useState({
     username: user.username || '',
     email: user.email || '',
     password: '',
     role: user.role || '',
-  });
-  const [customerData, setCustomerData] = useState({
     firstname: '',
     lastname: '',
-    address: '',
-    phone: '',
-    paymentinfo: ''
-  });
-
-  const [vendorData, setVendorData] = useState({
+    customeraddress: '',
+    customerphone: '',
+    paymentinfo: '',
     companyname: '',
-    address: '',
-    phone: ''
+    vendoraddress: '',
+    vendorphone: '',
   });
 
   useEffect(() => {
@@ -27,7 +22,7 @@ export default function ProfileUpdateForm({ user }) {
       try {
         const userData = await usersService.getOne(user.email);
         if (userData) {
-          setUserData({
+          setFormData({
             username: userData.user.username,
             email: userData.user.email,
             role: userData.user.role,
@@ -40,8 +35,6 @@ export default function ProfileUpdateForm({ user }) {
             vendoraddress: userData.vendor.address,
             vendorphone: userData.vendor.phone
           });
-          setCustomerData({});
-          setVendorData({});
         }
         console.log(userData);
       } catch (err) {
@@ -59,9 +52,9 @@ export default function ProfileUpdateForm({ user }) {
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    console.log(formData);
     try{
       usersService.updateUser(user.email, formData);
+      setUpdateForm(false);
     } catch (err){
       console.log(err);
     }
@@ -71,8 +64,6 @@ export default function ProfileUpdateForm({ user }) {
     <form onSubmit={handleSubmit}>
       {/* Render form fields based on role */}
       <h2>User Information</h2>
-      <br />
-      <br />
       <label>Username</label>
       <input type="text" name="username" value={formData.username} onChange={handleChange} />
       <label>Email</label>
@@ -85,23 +76,21 @@ export default function ProfileUpdateForm({ user }) {
       <label>Last Name</label>
       <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} />
       <label>Address</label>
-      <input type="text" name="address" value={formData.customeraddress} onChange={handleChange} />
+      <input type="text" name="customeraddress" value={formData.customeraddress} onChange={handleChange} />
       <label>Phone</label>
-      <input type="text" name="phone" value={formData.customerphone} onChange={handleChange} />
+      <input type="text" name="customerphone" value={formData.customerphone} onChange={handleChange} />
       <label>Payment Info</label>
       <input type="text" name="paymentinfo" value={formData.paymentinfo} onChange={handleChange} />
 
       {formData.role === 'vendor' && (
         <>
         <h2>Vendor Information</h2>
-        <br />
-        <br />
           <label>Company Name</label>
           <input type="text" name="companyname" value={formData.companyname} onChange={handleChange} />
           <label>Address</label>
-          <input type="text" name="address" value={formData.vendoraddress} onChange={handleChange} />
+          <input type="text" name="vendoraddress" value={formData.vendoraddress} onChange={handleChange} />
           <label>Phone</label>
-          <input type="text" name="phone" value={formData.vendorphone} onChange={handleChange} />
+          <input type="text" name="vendorphone" value={formData.vendorphone} onChange={handleChange} />
         </>
       )}
       <button type="submit">Update</button>
