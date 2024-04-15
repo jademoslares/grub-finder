@@ -9,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import SettingsPage from '../SettingsPage/SettingsPage';
+import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 
 
 export default function App() {
@@ -29,6 +30,7 @@ export default function App() {
               <Route path="/orders" element={<OrderHistoryPage />} />
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/restaurant/form" element={<RestaurantForm />} />
 
             </Routes>
             </div>
