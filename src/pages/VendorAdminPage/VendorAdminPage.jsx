@@ -21,7 +21,9 @@ export default function VendorAdminPage() {
       {user && user.role === 'vendor' ? (
         <div>
           <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
+        <br />  
         <hr /> 
+        <br />
           <OpeningHours />
         </div>
       ) : (
