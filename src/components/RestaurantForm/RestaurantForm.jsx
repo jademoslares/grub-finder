@@ -34,7 +34,6 @@ export default function RestaurantForm() {
             <input type="text" name="city" value={restaurant.city} onChange={handleChange} placeholder="City" required />
             <input type="text" name="state" value={restaurant.state} onChange={handleChange} placeholder="State" required />
             <input type="text" name="postal_code" value={restaurant.postal_code} onChange={handleChange} placeholder="Postal Code" required />
-            {/* Add inputs for open_hours if needed */}
             <button type="submit">Submit</button>
         </form>
 

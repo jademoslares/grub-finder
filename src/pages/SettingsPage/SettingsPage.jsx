@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { getUser } from '../../utilities/users-service';
 import MenuItems from '../../components/MenuItemForm/MenuItemForm';
 import OpeningHours from '../../components/OpeningHoursForm/OpeningHoursForm';
-import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 import { Link } from 'react-router-dom' 
 
 export default function VendorAdminPage() {
