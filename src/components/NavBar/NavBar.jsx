@@ -17,8 +17,8 @@ export default function NavBar({ user, setUser }) {
         <Link to="/orders/new" id="neworder">
           New Order
         </Link>
-        <Link to="/restaurants">Restaurants</Link>
-        {user.role === 'vendor' && <Link to="/settings">Settings</Link>}
+        <Link to="/restaurants" id="restaurants">Restaurants</Link>
+        {user.role === 'vendor' && <Link to="/settings" id="settings">Settings</Link>}
       </nav>
       <div className="logo">
         Grub Finder
