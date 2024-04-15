@@ -36,3 +36,25 @@
     transform: rotate(360deg);
   }
 }
+
+.pageHolder{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  overflow-y: scroll;
+  margin-top: 50px;
+  overflow: hidden;
+  height: 1000px;
+  margin-top: 0;
+}
+.background-card {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 30px;
+  height: 100%;
+  width: 75%;
+}
