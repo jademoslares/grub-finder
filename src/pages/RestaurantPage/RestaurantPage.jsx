@@ -6,6 +6,18 @@ import yelpData from "../../data/yelpData";
 export default function RestaurantPage() {
   const [restaurants, setRestaurants] = useState(yelpData);
 
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  useEffect(() => {
+    setRestaurants(shuffleArray(yelpData));
+  }, []);
+
   return (
     <div className="CardRestaurant">
       <div className="cardRestaurant_container">
@@ -14,11 +26,12 @@ export default function RestaurantPage() {
             className="swipe"
             key={restaurant.name}
             preventSwipe={["up", "down"]}
-            >
-              <h1>Restaurants</h1>
+          >
             <div className="card">
-              <h1>Name: {restaurant.name}</h1>
+              <h1>{restaurant.name}</h1>
+              <br />
               <h2>Categories: {restaurant.categories}</h2>
+              <br />
             </div>
           </CardRestaurant>
         ))}
