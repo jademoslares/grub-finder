@@ -22,7 +22,8 @@ const userSchema = new Schema({
     type: String,
     enum: ['customer', 'vendor'], // Enumerating the possible roles
     required: true
-  }
+  },
+  urlImage: { type: String, required: false }
 }, {
   timestamps: true,
   toJSON: {

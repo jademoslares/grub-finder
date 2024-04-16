@@ -24,11 +24,11 @@ export default function ProfilePage({ user }) {
 
   return (
     <>
-      <h1>Profile</h1>
       {userData && ( // Conditionally render only when userData is not null
         <>
           {!updateForm ? (
             <div className="test-container">
+              <img src={userData.user.urlImage} alt="profile" />
               <h2>User Information</h2>
               <label>
                 <strong>Name:</strong>

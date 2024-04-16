@@ -28,3 +28,11 @@ h2 {
 .background-card {
     position: relative; /* Set relative positioning for the shared parent */
 }
+img{
+    width: 200px;
+    height: 200px;
+    grid-column: span 2;
+    place-self: center;
+    border-radius: 50%;
+    object-fit: cover;
+}
