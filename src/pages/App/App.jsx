@@ -9,6 +9,7 @@ import NavBar from "../../components/NavBar/NavBar";
 import ProfilePage from "../ProfilePage/ProfilePage";
 import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import SettingsPage from '../SettingsPage/SettingsPage';
+import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
 import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 
 
@@ -23,13 +24,14 @@ export default function App() {
           <NavBar user={user} setUser={setUser} />
           <div className="pageHolder">
             <div className="background-card">
-            <Routes>
               {/* Route components in here */}
+            <Routes>
               <Route path="/restaurants" element={<RestaurantPage />}/>
               <Route path="/orders/new" element={<NewOrderPage />} />
               <Route path="/orders" element={<OrderHistoryPage />} />
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
               <Route path="/restaurant/form" element={<RestaurantForm />} />
 
             </Routes>
