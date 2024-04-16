@@ -1,42 +1,47 @@
 import React, { useState } from 'react';
+import * as restaurantService from "../../utilities/restaurant-service";
 
-export default function RestaurantForm() {
-    const [restaurant, setFormData] = useState({
-        vendor_id: '',
-        restaurant_name: '',
+export default function RestaurantForm({ user }) {
+    const [formData, setFormData] = useState({
+        vendor_id: user.email,
+        name: '',
         description: '',
-        category: '',
-        street: '',
-        city: '',
-        state: '',
-        postal_code: '',
-        open_hours: {},
+        cuisine: '',
+        location: '',
+        open_hours: '',
     });
 
-    const handleChange = (e) => {
-        setFormData({ ...restaurant, [e.target.name]: e.target.value });
-    };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        console.log('Restaurant:', restaurant)
+    const handleChange = e => {
+        const { name, value } = e.target;
+        setFormData({ ...formData, [name]: value });
+      };
+
+    const handleSubmit = async (evt) => {
+        evt.preventDefault();
+        try {
+            restaurantService.create(formData);
+        } catch {
+
+        }
     };
 
     return (
-        <div>
-            <h2>Add Restaurant</h2>
+        <>
+        <h1>Add a Restaurant</h1>
         <form onSubmit={handleSubmit}>
-            <input type="number" name="vendor_id" value={restaurant.vendor_id} onChange={handleChange} placeholder="Vendor ID" required />
-            <input type="text" name="restaurant_name" value={restaurant.restaurant_name} onChange={handleChange} placeholder="Restaurant Name" required />
-            <textarea name="description" value={restaurant.description} onChange={handleChange} placeholder="Description" required />
-            <input type="text" name="category" value={restaurant.category} onChange={handleChange} placeholder="Category" required />
-            <input type="text" name="street" value={restaurant.street} onChange={handleChange} placeholder="Street" required />
-            <input type="text" name="city" value={restaurant.city} onChange={handleChange} placeholder="City" required />
-            <input type="text" name="state" value={restaurant.state} onChange={handleChange} placeholder="State" required />
-            <input type="text" name="postal_code" value={restaurant.postal_code} onChange={handleChange} placeholder="Postal Code" required />
-            <button type="submit">Submit</button>
+            <label>Name</label>
+            <input type="text" name="name" value={formData.name} onChange={handleChange} required />
+            <label>Description</label>
+            <input type="text" name="description" value={formData.description} onChange={handleChange} required />
+            <label>Cuisine</label>
+            <input type="text" name="cuisine" value={formData.cuisine} onChange={handleChange} required />
+            <label>Location</label>
+            <input type="text" name="location" value={formData.location} onChange={handleChange} required />
+            <label>Open Hours</label>
+            <input type="text" name="open_hours" value={formData.open_hours} onChange={handleChange} required />
+            <button type="submit">Add Restaurant</button>
         </form>
-
-        </div>
+        </>
     );
 }

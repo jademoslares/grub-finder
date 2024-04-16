@@ -18,13 +18,11 @@ export default function NavBar({ user, setUser }) {
       
         <Link to="/restaurants" id="restaurants">Restaurants</Link>
         <Link to="/settings" id="settings">Settings</Link>
-          <Link className="logout" to="" onClick={handleLogOut}>
-
+        <Link className="logout" to="" onClick={handleLogOut}>
             Log Out
-          </Link>
+        </Link>
+        <Link to="/test" id="test">Test</Link>
       </nav>
-      
-  
     </>
   );
 }
