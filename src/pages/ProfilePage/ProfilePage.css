@@ -1,38 +1,40 @@
-.test-container {
-  display: grid;
-  grid-template-columns: 2fr 2fr;
-  gap: 1.25vmin;
-  color: var(--text-light);
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-}
 
-label {
-  font-size: 2vmin;
+body {
   display: flex;
-  align-items: center;
 }
 
-h2 {
-  font-size: 3vmin;
-  color: var(--text-dark);
-  text-align: center;
-  grid-column: span 2;
+.profile{
+  position: relative;
+  width: 20vw;
+  text-align: left;
+  padding: 20px;
+  max-width: 85vh;
+  height: 40vh;
+  border: 1px solid black;
+  background-size: cover;
 }
-.edit-button {
-    position: absolute;
-    top: 0;
-    left: calc(100% - 70px); /* Adjust as needed */
-  }
-.background-card {
-    position: relative; /* Set relative positioning for the shared parent */
+
+.profile-photo {
+  position: relative;
+  width: 9vw;
+  padding: 15px;
+  max-width: 9vw;
+  border: 1px solid black;
+  background-size: cover;
 }
-img{
-    width: 200px;
-    height: 200px;
-    grid-column: span 2;
-    place-self: center;
-    border-radius: 50%;
-    object-fit: cover;
+
+h1 {
+  position: relative;
+  color: purple;
+  text-align: left;
+  margin-left: -3vw;
 }
+
+/* .listed-restaurants {
+  display: grid;
+  width: 9vw;
+  padding: 15px;
+  max-width: 9vw;
+  border: 1px solid black;
+  background-size: cover;
+} */
