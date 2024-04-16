@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { getUser } from '../../utilities/users-service';
 import MenuItems from '../../components/MenuItemForm/MenuItemForm';
 import OpeningHours from '../../components/OpeningHoursForm/OpeningHoursForm';
-
 import ProfilePage from '../ProfilePage/ProfilePage';
 import { Link } from 'react-router-dom';
 import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
@@ -24,10 +23,14 @@ export default function SettingsPage() {
           <Link to="/restaurant/form">
             <button>Add Restaurant</button>
           </Link>
+<<<<<<< HEAD
         <hr /> 
           {/* <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} /> */}
         <hr /> 
           <OpeningHours />        
+=======
+       
+>>>>>>> main
         </div>
         ) : (
         <div>

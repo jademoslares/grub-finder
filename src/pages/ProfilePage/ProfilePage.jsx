@@ -9,20 +9,17 @@ export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
   const [updateForm, setUpdateForm] = useState(false);
 
-  useEffect(
-    function () {
-      async function fetchUser() {
-        try {
-          const profile = await usersService.getOne(user.email);
-          setUserData(profile);
-        } catch (err) {
-          console.log(err);
-        }
+  useEffect(() => {
+    async function fetchUser() {
+      try {
+        const profile = await usersService.getOne(user.email);
+        setUserData(profile);
+      } catch (err) {
+        console.log(err);
       }
-      fetchUser();
-    },
-    [user.email]
-  );
+    }
+    fetchUser();
+  }, [user.email]);
 
   return (
     <div>
@@ -30,8 +27,8 @@ export default function ProfilePage({ user }) {
       <br />
       {userData && ( // Conditionally render only when userData is not null
         <div>
-          <div className="profile">
-            <img
+          <div className='profile'>
+          <img
               className="profile-photo"
               src={userData.user.urlImage}
               alt="profile"
@@ -59,8 +56,8 @@ export default function ProfilePage({ user }) {
             <Link to="/profile">Edit my Profile</Link>
           </div>
           <hr />
-          {userData.user.role === "vendor" && (
-            <div className="listed-restaurants">
+          {userData.user.role === "vendor" ? (
+            <div className='listed-restaurants'>
               <h2>Restaurants Owned</h2>
               <div>
                 <strong>Company Name:</strong> {userData.vendor.companyname}
@@ -71,20 +68,17 @@ export default function ProfilePage({ user }) {
               <div>
                 <strong>Phone Number:</strong> {userData.vendor.phone}
               </div>
-              ) : ( // If updateForm is true, render the form
-              <ProfileUpdateForm user={user} setUpdateForm={setUpdateForm} />
-              )}
-              <button
-                className="edit-button"
-                onClick={() => setUpdateForm(!updateForm)}
-              >
-                {updateForm ? "X" : "Edit"}
-              </button>
-              {userData.user.role === "vendor" && !updateForm && (
-                <>
-                  <h2>Restaurants Owned</h2>
-                </>
-              )}
+            </div>
+          ) : (
+            // If updateForm is true, render the form
+            <ProfileUpdateForm user={user} setUpdateForm={setUpdateForm} />
+          )}
+          <button className="edit-button" onClick={() => setUpdateForm(!updateForm)}>
+            {updateForm ? "X" : "Edit"}
+          </button>
+          {userData.user.role === "vendor" && !updateForm && (
+            <div>
+              <h2>Restaurants Owned</h2>
             </div>
           )}
         </div>
