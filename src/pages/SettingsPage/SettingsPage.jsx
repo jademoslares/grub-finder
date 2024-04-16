@@ -23,14 +23,7 @@ export default function SettingsPage() {
           <Link to="/restaurant/form">
             <button>Add Restaurant</button>
           </Link>
-<<<<<<< HEAD
-        <hr /> 
-          {/* <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} /> */}
-        <hr /> 
-          <OpeningHours />        
-=======
        
->>>>>>> main
         </div>
         ) : (
         <div>
