@@ -11,6 +11,13 @@ export default function NavBar({ user, setUser }) {
   return (
     <>
       <nav id="mySidenav" className="navbar">
+      <div className="logo">
+        🔍🐛 
+      &nbsp;&nbsp;
+      Grub Finder
+      </div>
+      <p>Welcome, {user.username}</p>
+      
         <Link to="/orders" id="orderhistory">
           Order History
         </Link>
@@ -30,8 +37,8 @@ export default function NavBar({ user, setUser }) {
         </div>
       </div>
       </nav>
-      <div className="logo">
-        Grub Finder
+      <div className="header">
+
       </div>
     
     </>

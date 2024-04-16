@@ -33,3 +33,4 @@ export default function VendorAdminPage() {
     </div>
   );
 }
+
