@@ -52,3 +52,22 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
+
+.lander {
+  display: grid;
+grid-template-columns: 1fr 2fr;
+}
+
+.lander-form {
+  display: grid;
+  grid-column: 1;
+  justify-self: center;
+  width: 20vw;
+  margin-left: 5vw;;
+}
+
+.grub {
+  display: grid;
+  grid-column: 2;
+  justify-content: right;
+}

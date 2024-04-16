@@ -31,11 +31,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
-
-#root {
-  height: 100vh;
-}
-
 .align-ctr {
   text-align: center;
 }
@@ -46,12 +41,6 @@ code {
 
 .smaller {
   font-size: smaller;
-}
-
-.flex-ctr-ctr {
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .flex-col {
