@@ -10,6 +10,7 @@ import ProfilePage from "../ProfilePage/ProfilePage";
 import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
+import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
 
 
 export default function App() {
@@ -31,6 +32,8 @@ export default function App() {
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
+              <Route path="/restaurant/form" element={<RestaurantForm />} />
+
             </Routes>
             </div>
           </div>

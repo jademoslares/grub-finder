@@ -1,47 +1,42 @@
-import React, {useState} from 'react';
-import './RestaurantPage.css';
-import CardRestaurant from 'react-tinder-card'
+
+import React, { useState, useEffect } from "react";
+import "./RestaurantPage.css";
+import CardRestaurant from "react-tinder-card";
+import yelpData from "../../data/yelpData";
 
 export default function RestaurantPage() {
+  const [restaurants, setRestaurants] = useState(yelpData);
 
-    const [restaurant] = useState([
-        {
-            name: 'Restaurant 1',
-            url: 'https://source.unsplash.com/random/1000x1000?restaurant',
-        },
-        {
-            name: 'Restaurant 2',
-            url: 'https://source.unsplash.com/random/1000x1000?food',
-        },
-    ]);
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
 
-    return (
-        <div className='CardRestaurant'>
+  useEffect(() => {
+    setRestaurants(shuffleArray(yelpData));
+  }, []);
 
-            <div className='cardRestaurant_container'>
-                {restaurant.map(restaurant => (
-
-                    <CardRestaurant
-                    className='swipe'
-                    key={restaurant.name}
-                    preventSwipe={['up', 'down']}
-                    >
-
-                        <div 
-                        className='card'
-                        style={{backgroundImage: `url(${restaurant.url}`}}
-                        >
-
-                            <h2>{restaurant.name}</h2>
-
-                        </div>
-
-                    </CardRestaurant>
-
-
-                ))}
+  return (
+    <div className="CardRestaurant">
+      <div className="cardRestaurant_container">
+        {restaurants.map((restaurant) => (
+          <CardRestaurant
+            className="swipe"
+            key={restaurant.restaurant_name}
+            preventSwipe={["up", "down"]}
+          >
+            <div className="card">
+              <h1>{restaurant.restaurant_name}</h1>
+              <br />
+              <h2>Categories: {restaurant.categories}</h2>
+              <br />
             </div>
-
-        </div>
-    );
-  }
+          </CardRestaurant>
+        ))}
+      </div>
+    </div>
+  );
+}
