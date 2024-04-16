@@ -23,7 +23,7 @@ h2 {
 .edit-button {
     position: absolute;
     top: 0;
-    left: calc(100% - 7%); /* Adjust as needed */
+    left: calc(100% - 70px); /* Adjust as needed */
   }
 .background-card {
     position: relative; /* Set relative positioning for the shared parent */
