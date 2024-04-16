@@ -11,6 +11,7 @@ import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
 import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
+import Test from '../../pages/Test/Test';
 
 
 export default function App() {
@@ -32,7 +33,7 @@ export default function App() {
               <Route path="/profile" element={<ProfilePage user={user} />} />
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
-              <Route path="/restaurant/form" element={<RestaurantForm />} />
+              <Route path="/test" element={<Test user={user}/>} />
 
             </Routes>
             </div>
