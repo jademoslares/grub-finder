@@ -84,8 +84,8 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
 
   const uploadFileToS3 = async (file) => {
     const s3 = new AWS.S3({
-      accessKeyId: 'AKIA5FTZCU47WYBWDPKO',
-      secretAccessKey: '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',
+      accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY,
       region: 'us-east-2',
     });
 
