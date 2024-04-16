@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getOne } from "../../utilities/users-api";
-import * as usersService from "../../utilities/users-service";
+import './ProfilePage.css';
+import { Link } from 'react-router-dom';
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
@@ -18,10 +19,14 @@ export default function ProfilePage({ user }) {
   }, [user.email]);
   return (
     <div>
-      <h1>Profile</h1>
+      <h1>Settings</h1>
+      <br />
       {userData && ( // Conditionally render only when userData is not null
       <>
-        <div>
+        <div className='profile'>
+        <img className="profile-photo" src="https://source.unsplash.com/random/1000x1000?persona" alt={userData.user.name} />
+          <br />
+          <br />
           <div>
             <strong>Name:</strong> {userData.user.username}
           </div>
@@ -40,9 +45,11 @@ export default function ProfilePage({ user }) {
           <div>
             <strong>Phone Number:</strong> {userData.customer.phone}
           </div>
+          <Link to="/profile">Edit my Profile</Link>
         </div>
+        <hr />
         {userData.user.role === "vendor" && (
-          <div>
+          <div className='listed-restaurants'>
             <h2>Restaurants Owned</h2>
             <div>
               <strong>Company Name:</strong> {userData.vendor.companyname}
