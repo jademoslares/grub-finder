@@ -24,11 +24,11 @@ export default function RestaurantPage() {
         {restaurants.map((restaurant) => (
           <CardRestaurant
             className="swipe"
-            key={restaurant.name}
+            key={restaurant.restaurant_name}
             preventSwipe={["up", "down"]}
           >
             <div className="card">
-              <h1>{restaurant.name}</h1>
+              <h1>{restaurant.restaurant_name}</h1>
               <br />
               <h2>Categories: {restaurant.categories}</h2>
               <br />
