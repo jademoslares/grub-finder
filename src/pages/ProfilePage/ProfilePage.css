@@ -1,0 +1,30 @@
+.test-container {
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  gap: 1.25vmin;
+  color: var(--text-light);
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+label {
+  font-size: 2vmin;
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  font-size: 3vmin;
+  color: var(--text-dark);
+  text-align: center;
+  grid-column: span 2;
+}
+.edit-button {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 70px); /* Adjust as needed */
+  }
+.background-card {
+    position: relative; /* Set relative positioning for the shared parent */
+}

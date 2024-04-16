@@ -13,6 +13,8 @@ router.post('/', usersCtrl.create);
 router.post('/login', usersCtrl.login);
 // GET /api/users/id
 router.get('/:id', usersCtrl.getUser);
+// POST /api/users/id/update
+router.post('/:id/update', usersCtrl.updateUser);
 
 
 module.exports = router;
