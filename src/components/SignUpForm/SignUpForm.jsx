@@ -22,7 +22,9 @@ export default class SignUpForm extends Component {
     evt.preventDefault();
     try {
       const {username, email, password, role} = this.state;
-      const formData = {username, email, password, role};
+
+      const urlImage = 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b5/Windows_10_Default_Profile_Picture.svg/1024px-Windows_10_Default_Profile_Picture.svg.png'
+      const formData = {username, email, password, role,urlImage};
       // The promise returned by the signUp service
       // method will resolve to the user object included
       // in the payload of the JSON Web Token (JWT)

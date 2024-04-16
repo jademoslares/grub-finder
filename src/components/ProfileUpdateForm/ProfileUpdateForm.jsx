@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
+import AWS from 'aws-sdk';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function ProfileUpdateForm({ user, setUpdateForm }) {
   const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
     companyname: '',
     vendoraddress: '',
     vendorphone: '',
+    urlImage: '',
   });
 
   useEffect(() => {
@@ -22,19 +25,26 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
       try {
         const userData = await usersService.getOne(user.email);
         if (userData) {
-          setFormData({
+          const formData = {
             username: userData.user.username,
             email: userData.user.email,
             role: userData.user.role,
+            urlImage: userData.user.urlImage,
             firstname: userData.customer.firstname,
             lastname: userData.customer.lastname,
             customeraddress: userData.customer.address,
             customerphone: userData.customer.phone,
             paymentinfo: userData.customer.paymentinfo,
-            companyname: userData.vendor.companyname,
-            vendoraddress: userData.vendor.address,
-            vendorphone: userData.vendor.phone
-          });
+          };
+  
+          // If user role is vendor, add vendor-specific fields
+          if (userData.user.role === 'vendor') {
+            formData.companyname = userData.vendor.companyname;
+            formData.vendoraddress = userData.vendor.address;
+            formData.vendorphone = userData.vendor.phone;
+          }
+  
+          setFormData(formData);
         }
         console.log(userData);
       } catch (err) {
@@ -60,9 +70,45 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
     }
   }
 
+  const handleFileChange = async (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      try {
+        const url = await uploadFileToS3(file);
+        setFormData({ ...formData, urlImage: url });
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
+    }
+  };
+
+  const uploadFileToS3 = async (file) => {
+    const s3 = new AWS.S3({
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      region: 'us-east-2',
+    });
+
+    //generate a unique ID for the uploaded file
+    const uniqueId = uuidv4().slice(0, 6);
+    const fileExtension = file.name.slice(file.name.lastIndexOf('.'));
+    const newFileName = `${uniqueId}${fileExtension}`;
+
+    const params = {
+      Bucket: 'grubfinder-storage',
+      Key: newFileName, // Key under which to store the file
+      Body: file,
+    };
+  
+    const data = await s3.upload(params).promise();
+    return data.Location; // Return the URL of the uploaded file
+  };
+
   return (
     <form onSubmit={handleSubmit}>
       {/* Render form fields based on role */}
+      <img src={formData.urlImage} alt="profile" />
+      <input type="file" onChange={handleFileChange} />
       <h2>User Information</h2>
       <label>Username</label>
       <input type="text" name="username" value={formData.username} onChange={handleChange} />

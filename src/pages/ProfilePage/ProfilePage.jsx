@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import { getOne } from "../../utilities/users-api";
-import './ProfilePage.css';
-import { Link } from 'react-router-dom';
+import "./ProfilePage.css";
+import { Link } from "react-router-dom";
 import * as usersService from "../../utilities/users-service";
 import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
 
@@ -28,7 +28,11 @@ export default function ProfilePage({ user }) {
       {userData && ( // Conditionally render only when userData is not null
         <div>
           <div className='profile'>
-            <img className="profile-photo" src="https://source.unsplash.com/random/1000x1000?persona" alt={userData.user.name} />
+          <img
+              className="profile-photo"
+              src={userData.user.urlImage}
+              alt="profile"
+            />
             <br />
             <br />
             <div>

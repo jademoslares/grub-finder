@@ -68,7 +68,7 @@ async function create(req, res) {
   try {
     // Add the user to the db
     const user = await User.create(req.body);
-    console.log(user)
+    // console.log(user)
     // Depending on the role, create a corresponding entry
     if (user.role === 'customer') {
       // Create a customer linked to the user
@@ -102,6 +102,8 @@ async function create(req, res) {
       };
       await Vendor.create(vendorData);
     }
+
+    
 
     const token = createJWT(user);
     res.json(token);
