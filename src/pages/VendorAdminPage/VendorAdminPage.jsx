@@ -25,7 +25,9 @@ export default function VendorAdminPage() {
         <div>
           
           <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
+        <br />  
         <hr /> 
+        <br />
           <OpeningHours />
         </div>
       ) : (

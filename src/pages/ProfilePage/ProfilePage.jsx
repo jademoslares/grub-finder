@@ -1,22 +1,30 @@
+
 import React, { useState, useEffect } from 'react';
 import { getOne } from "../../utilities/users-api";
 import './ProfilePage.css';
 import { Link } from 'react-router-dom';
+import * as usersService from "../../utilities/users-service";
+import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
+  const [updateForm, setUpdateForm] = useState(false);
 
-  useEffect(function () {
-    async function fetchUser() {
-      try {
-        const profile = await getOne(user.email);
-        setUserData(profile);
-      } catch (err) {
-        console.log(err);
+  useEffect(
+    function () {
+      async function fetchUser() {
+        try {
+          const profile = await usersService.getOne(user.email);
+          setUserData(profile);
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
-    fetchUser();
-  }, [user.email]);
+      fetchUser();
+    },
+    [user.email]
+  );
+
   return (
     <div>
       <h1>Settings</h1>
@@ -60,11 +68,20 @@ export default function ProfilePage({ user }) {
             <div>
               <strong>Phone Number:</strong> {userData.vendor.phone}
             </div>
-          </div>
-        )}
+          ) : (
+            // If updateForm is true, render the form
+            <ProfileUpdateForm user={user} setUpdateForm={setUpdateForm} />
+          )}
+          <button className="edit-button" onClick={() => setUpdateForm(!updateForm)}>
+            {updateForm ? "X" : "Edit"}
+          </button>
+          {userData.user.role === "vendor" && !updateForm && (
+            <>
+              <h2>Restaurants Owned</h2>
+            </>
+          )}
         </>
       )}
-    </div>
-    
+    </>
   );
 }
