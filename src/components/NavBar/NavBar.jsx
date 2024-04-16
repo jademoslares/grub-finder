@@ -11,6 +11,11 @@ export default function NavBar({ user, setUser }) {
   return (
     <>
       <nav id="mySidenav" className="navbar">
+      <div className="logo">
+      🔍🐛 Grub Finder
+      </div>
+      <p>Welcome, {user.username}</p>
+      
         <Link to="/orders" id="orderhistory">
           Order History
         </Link>
@@ -18,20 +23,14 @@ export default function NavBar({ user, setUser }) {
           New Order
         </Link>
         <Link to="/restaurants" id="restaurants">Restaurants</Link>
-        {user.role === 'vendor' && <Link to="/settings" id="settings">Settings</Link>}
-      </nav>
-      <div className="logo">
-        Grub Finder
-      </div>
-      <div className="dropdown">
-        <button className="dropbtn">Welcome, {user.username}</button>
-        <div className="dropdown-content">
-          <Link to="/profile">Profile</Link>
-          <Link to="" onClick={handleLogOut}>
+        <Link to="/settings" id="settings">Settings</Link>
+          <Link className="logout" to="" onClick={handleLogOut}>
+
             Log Out
           </Link>
-        </div>
-      </div>
+      </nav>
+      
+  
     </>
   );
 }

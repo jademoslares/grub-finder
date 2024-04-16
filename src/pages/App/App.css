@@ -3,7 +3,7 @@
 }
 
 .App-logo {
-  height: 40vmin;
+  height: 4vmin;
   pointer-events: none;
 }
 
@@ -15,7 +15,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,24 +37,18 @@
   }
 }
 
-.pageHolder{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
-  overflow-y: scroll;
-  margin-top: 50px;
-  overflow: hidden;
-  height: 1000px;
-  margin-top: 0;
-}
 .background-card {
   background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
   border-radius: 10px;
-  padding: 30px;
-  height: 100%;
-  width: 75%;
+  overflow: hidden;
+  padding: 20px;
+  height: 80vh;
+  width: 75vw;
+  margin-left: 18vw;
+  margin-top: 8vh;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
