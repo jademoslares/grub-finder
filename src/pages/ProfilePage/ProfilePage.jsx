@@ -1,63 +1,104 @@
-import React, { useState, useEffect } from 'react';
-import { getOne } from "../../utilities/users-api";
+import React, { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
+import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
+import "./ProfilePage.css";
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
+  const [updateForm, setUpdateForm] = useState(false);
 
-  useEffect(function () {
-    async function fetchUser() {
-      try {
-        const profile = await getOne(user.email);
-        setUserData(profile);
-      } catch (err) {
-        console.log(err);
+  useEffect(
+    function () {
+      async function fetchUser() {
+        try {
+          const profile = await usersService.getOne(user.email);
+          setUserData(profile);
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
-    fetchUser();
-  }, [user.email]);
+      fetchUser();
+    },
+    [user.email]
+  );
+
   return (
-    <div>
+    <>
       <h1>Profile</h1>
       {userData && ( // Conditionally render only when userData is not null
-      <>
-        <div>
-          <div>
-            <strong>Name:</strong> {userData.user.username}
-          </div>
-          <div>
-            <strong>Email:</strong> {userData.user.email}
-          </div>
-          <div>
-            <strong>First Name:</strong> {userData.customer.firstname}
-          </div>
-          <div>
-            <strong>Last Name:</strong> {userData.customer.lastname}
-          </div>
-          <div>
-            <strong>Payment Info:</strong> {userData.customer.paymentinfo}
-          </div>
-          <div>
-            <strong>Phone Number:</strong> {userData.customer.phone}
-          </div>
-        </div>
-        {userData.user.role === "vendor" && (
-          <div>
-            <h2>Restaurants Owned</h2>
-            <div>
-              <strong>Company Name:</strong> {userData.vendor.companyname}
+        <>
+          {!updateForm ? (
+            <div className="test-container">
+              <h2>User Information</h2>
+              <label>
+                <strong>Name:</strong>
+              </label>
+              <label>{userData.user.username}</label>
+
+              <label>
+                <strong>Email:</strong>
+              </label>
+              <label>{userData.user.email}</label>
+
+              <label>
+                <strong>Address:</strong>
+              </label>
+              <label>{userData.customer.address}</label>
+
+              <label>
+                <strong>First Name:</strong>
+              </label>
+              <label>{userData.customer.firstname}</label>
+
+              <label>
+                <strong>Last Name:</strong>
+              </label>
+              <label>{userData.customer.lastname}</label>
+
+              <label>
+                <strong>Payment Info:</strong>
+              </label>
+              <label>{userData.customer.paymentinfo}</label>
+
+              <label>
+                <strong>Phone Number:</strong>
+              </label>
+              <label>{userData.customer.phone}</label>
+
+              {userData.user.role === "vendor" && (
+                <>
+                  <h2>Vendor Information</h2>
+                  <label>
+                    <strong>Company Name:</strong>
+                  </label>
+                  <label>{userData.vendor.companyname}</label>
+
+                  <label>
+                    <strong>Address:</strong>
+                  </label>
+                  <label>{userData.vendor.address}</label>
+
+                  <label>
+                    <strong>Phone Number:</strong>
+                  </label>
+                  <label>{userData.vendor.phone}</label>
+                  </>
+              )}
             </div>
-            <div>
-              <strong>Address:</strong> {userData.vendor.address}
-            </div>
-            <div>
-              <strong>Phone Number:</strong> {userData.vendor.phone}
-            </div>
-          </div>
-        )}
+          ) : (
+            // If updateForm is true, render the form
+            <ProfileUpdateForm user={user} setUpdateForm={setUpdateForm} />
+          )}
+          <button className="edit-button" onClick={() => setUpdateForm(!updateForm)}>
+            {updateForm ? "X" : "Edit"}
+          </button>
+          {userData.user.role === "vendor" && !updateForm && (
+            <>
+              <h2>Restaurants Owned</h2>
+            </>
+          )}
         </>
       )}
-    </div>
-    
+    </>
   );
 }
