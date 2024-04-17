@@ -35,7 +35,7 @@ export default function App() {
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
               <Route path="/test" element={<Test user={user}/>} />
-              <Route path="/:id" element={<RestaurantDetailPage />} />
+              <Route path="/:id" element={<RestaurantDetailPage user={user}/>} />
             </Routes>
             </div>
           </div>

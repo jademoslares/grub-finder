@@ -17,15 +17,13 @@ export default function RestaurantPage() {
   };
 
   useEffect(() => {
-    async function fetchUser() {
+    async function getAllRestaurant() {
       const fetchRestaurants = await restaurantService.getAllRestaurant();
       const shuffledRestaurants = shuffleArray(fetchRestaurants);
       setRestaurants(shuffledRestaurants);
     }
-    fetchUser();
+    getAllRestaurant();
   }, []);
-
-  console.log(restaurants);
   return (
     <div className="CardRestaurant">
       <div className="cardRestaurant_container">

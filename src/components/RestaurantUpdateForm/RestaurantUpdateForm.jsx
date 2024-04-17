@@ -32,7 +32,6 @@ export default function RestaurantUpdateForm({ id, setUpdateForm }) {
           };
           setFormData(formData);
         }
-        console.log(restaurantData);
       } catch (err) {
         console.log(err);
       }

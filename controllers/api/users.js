@@ -9,7 +9,8 @@ module.exports = {
   login,
   checkToken,
   getUser,
-  updateUser
+  updateUser,
+  getOwner
 };
 
 async function updateUser(req, res) {
@@ -146,6 +147,16 @@ async function getUser(req, res) {
     }
   } catch (err) {
     res.status(400).json('Profile not found');
+  }
+}
+
+async function getOwner(req, res) {
+  try{
+    const vendor = await Vendor.findOne({_id: req.params.id});
+    const user = await User.findOne({_id: vendor.user});
+    res.json(user);
+  }catch(err){
+    res.status(400).json('Owner not found');
   }
 }
 

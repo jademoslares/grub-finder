@@ -15,6 +15,8 @@ router.post('/login', usersCtrl.login);
 router.get('/:id', usersCtrl.getUser);
 // POST /api/users/id/update
 router.post('/:id/update', usersCtrl.updateUser);
+// GET /api/users/id/owner
+router.get('/:id/owner', usersCtrl.getOwner);
 
 
 
