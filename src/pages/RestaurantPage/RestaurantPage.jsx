@@ -2,42 +2,51 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./RestaurantPage.css";
 import CardRestaurant from "react-tinder-card";
-import yelpData from "../../data/yelpData";
+// import yelpData from "../../data/yelpData";
+import { restaurants as r } from "../../Data/dummyData";
 import * as restaurantService from "../../utilities/restaurant-service";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
 
 export default function RestaurantPage() {
   const [restaurants, setRestaurants] = useState([]);
 
-//   const [filteredRestaurants, setFilteredRestaurants] = useState([
-//     ...restaurants,
-//   ]);
-//   const [filterOptions, setFilterOptions] = useState({
-//     category: "",
-//     priceRange: "",
-//     distance: "",
-//   });
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+  const [filterOptions, setFilterOptions] = useState({
+    category: "",
+    priceRange: "",
+    distance: "",
+  });
 
-//   useEffect(() => {
-//     let filteredResults = [...restaurants];
+  useEffect(() => {
+    async function mergeRestaurants() {
+      const userRestaurants = await restaurantService.getAllRestaurant();
+      const combinedRestaurants = [...r, ...userRestaurants];
+      const shuffledRestaurants = shuffleArray(combinedRestaurants);
+      setRestaurants(shuffledRestaurants);
+    }
+    mergeRestaurants();
+  }, []);
   
-//     if (filterOptions.category) {
-//       filteredResults = filteredResults.filter(
-//         (restaurant) => restaurant.category === filterOptions.category
-//       );
-//     }
-//     if (filterOptions.priceRange) {
-//       filteredResults = filteredResults.filter(
-//         (restaurant) => restaurant.price <= filterOptions.priceRange
-//       );
-//     }
-//     setFilteredRestaurants(filteredResults);
-//   }, [filterOptions]);
+  useEffect(() => {
+    let filteredResults = [...restaurants];
+  
+    if (filterOptions.category) {
+      filteredResults = filteredResults.filter(
+        (restaurant) => restaurant.category === filterOptions.category
+      );
+    }
+    if (filterOptions.priceRange) {
+      filteredResults = filteredResults.filter(
+        (restaurant) => restaurant.price <= filterOptions.priceRange
+      );
+    }
+    setFilteredRestaurants(filteredResults);
+  }, [filterOptions, restaurants]);
 
-// const resetFilters = () => {
-//     console.log('Resetting filtered restaurants...');
-//     setFilteredRestaurants([...restaurants]);
-//   };
+const resetFilters = () => {
+    console.log('Resetting filtered restaurants...');
+    setFilteredRestaurants([...restaurants, ...r]);
+  };
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
@@ -47,19 +56,21 @@ export default function RestaurantPage() {
     return array;
   };
 
-  useEffect(() => {
-    async function getAllRestaurant() {
-      const fetchRestaurants = await restaurantService.getAllRestaurant();
-      const shuffledRestaurants = shuffleArray(fetchRestaurants);
-      setRestaurants(shuffledRestaurants);
-    }
-    getAllRestaurant();
-  }, []);
+  // useEffect(() => {
+  //   async function getAllRestaurant() {
+  //     const fetchRestaurants = await restaurantService.getAllRestaurant();
+  //     const shuffledRestaurants = shuffleArray(fetchRestaurants);
+  //     setRestaurants(shuffledRestaurants);
+  //   }
+  //   getAllRestaurant();
+  // }, []);
+
   return (
     <div className="CardRestaurant">
+      <SearchFilter setFilterOptions={setFilterOptions} resetFilters={resetFilters} />
       <div className="cardRestaurant_container">
-      {/* {restaurants.map((restaurant) => ( */}
-        {restaurants.map((restaurant) => (
+      
+        {filteredRestaurants.map((restaurant) => (
           <CardRestaurant
             className="swipe"
             key={restaurant.name}
@@ -86,4 +97,3 @@ export default function RestaurantPage() {
     </div>
   );
 }
-

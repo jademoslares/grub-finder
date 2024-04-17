@@ -94,4 +94,3 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
     </div>
   );
 }
-
