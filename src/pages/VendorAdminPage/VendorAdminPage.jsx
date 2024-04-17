@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { getUser } from '../../utilities/users-service';
-import MenuItems from '../../components/MenuItemForm/MenuItemForm';
 import OpeningHours from '../../components/OpeningHoursForm/OpeningHoursForm';
 import { Link } from 'react-router-dom';
 import '../SettingsPage/SettingsPage.css';
@@ -16,14 +15,13 @@ export default function VendorAdminPage() {
   return (
     <div>
       <h1>Vendor Portal</h1>
-      <Link to="/settings">Back to Settings</Link>
       {user && user.role === 'vendor' ? (
         <div>
 
             <Link to="/addRestaurant">
             <button>Add Restaurant</button>
           </Link>
-          <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
+
         <br />  
         <hr /> 
         <br />

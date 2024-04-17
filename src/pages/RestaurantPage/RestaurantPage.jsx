@@ -73,7 +73,7 @@ const resetFilters = () => {
         {filteredRestaurants.map((restaurant) => (
           <CardRestaurant
             className="swipe"
-            key={restaurant.name}
+            key={restaurant._id}
             preventSwipe={["up", "down"]}
           >
             <div className="card">

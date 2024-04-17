@@ -16,3 +16,7 @@ export function getOneRestaurant(id){
 export function updateRestaurant(id, data){
     return sendRequest(`${BASE_URL}/${id}/update`, 'POST', data);
 }
+
+export function addMenu(id, data){
+    return sendRequest(`${BASE_URL}/${id}/menu`, 'POST', data);
+}

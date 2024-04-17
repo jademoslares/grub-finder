@@ -13,5 +13,7 @@ router.post('/new', restaurantCtrl.newRestaurant);
 router.get('/:id', restaurantCtrl.getOneRestaurant);
 // POST /api/restaurant/id/update
 router.post('/:id/update', restaurantCtrl.updateRestaurant);
+// POST /api/restaurant/id/menu
+router.post('/:id/menu', restaurantCtrl.addMenu);
 
 module.exports = router;
