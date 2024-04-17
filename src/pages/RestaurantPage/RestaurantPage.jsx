@@ -76,7 +76,6 @@ const resetFilters = () => {
             key={restaurant.name}
             preventSwipe={["up", "down"]}
           >
-            
             <div className="card">
             <img className="image" src={restaurant.urlImage} alt={restaurant.name} />
               <h2>{restaurant.name}</h2>
