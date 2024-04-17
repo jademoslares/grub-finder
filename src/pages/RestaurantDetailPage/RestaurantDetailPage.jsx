@@ -85,9 +85,9 @@ export default function RestaurantDetailPage({ user }) {
           {updateForm ? "X" : "Edit"}
         </button>
         )}
-        <div>
+        {/* <div>
           <h2>Menu</h2>
-        </div>
+        </div> */}
       </div>
     </>
   );
