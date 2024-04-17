@@ -11,6 +11,7 @@ import RestaurantPage from '../RestaurantPage/RestaurantPage';
 import SettingsPage from '../SettingsPage/SettingsPage';
 import VendorAdminPage from '../VendorAdminPage/VendorAdminPage';
 import RestaurantForm from '../../components/RestaurantForm/RestaurantForm';
+import RestaurantDetailPage from "../RestaurantDetailPage/RestaurantDetailPage";
 import Test from '../../pages/Test/Test';
 
 
@@ -34,7 +35,7 @@ export default function App() {
               <Route path="/settings" element={<SettingsPage />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
               <Route path="/test" element={<Test user={user}/>} />
-
+              <Route path="/:id" element={<RestaurantDetailPage />} />
             </Routes>
             </div>
           </div>
