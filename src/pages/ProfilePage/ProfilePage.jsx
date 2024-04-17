@@ -27,7 +27,6 @@ export default function ProfilePage({ user }) {
     [user.email]
   );
 
-  console.log(userRestaurants);
   return (
     <>
       {userData && ( // Conditionally render only when userData is not null

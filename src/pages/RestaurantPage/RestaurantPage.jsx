@@ -43,7 +43,6 @@ export default function RestaurantPage() {
   }, [filterOptions, restaurants]);
 
 const resetFilters = () => {
-    console.log('Resetting filtered restaurants...');
     setFilteredRestaurants([...restaurants]);
   };
 
