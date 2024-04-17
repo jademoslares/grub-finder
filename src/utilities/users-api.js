@@ -20,6 +20,10 @@ export function getOne(id){
 export function updateUser(id, data){
   return sendRequest(`${BASE_URL}/${id}/update`, 'POST', data);
 }
+
+export function getOwner(id){
+  return sendRequest(`${BASE_URL}/${id}/owner`);
+}
 // export async function signUp(userData) {
 //   // Fetch uses an options object as a second arg
 //   // to make requests other than GET, include data,

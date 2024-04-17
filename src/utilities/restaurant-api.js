@@ -8,3 +8,11 @@ export function addRestaurant(restaurantData) {
 export function getAllRestaurant() {
   return sendRequest(BASE_URL);
 }
+
+export function getOneRestaurant(id){
+    return sendRequest(`${BASE_URL}/${id}`);
+}
+
+export function updateRestaurant(id, data){
+    return sendRequest(`${BASE_URL}/${id}/update`, 'POST', data);
+}

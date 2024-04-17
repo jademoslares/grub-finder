@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+
 import * as restaurantService from "../../utilities/restaurant-service";
 import AWS from "aws-sdk";
 import { v4 as uuidv4 } from "uuid";
-import "./RestaurantForm.css";
+import "./RestaurantUpdateForm.css";
 
-export default function RestaurantForm({ user }) {
+export default function RestaurantUpdateForm({ id, setUpdateForm }) {
   const [formData, setFormData] = useState({
-    vendor_id: user.email,
+    vendor_id: "",
     name: "",
     description: "",
     cuisine: "",
@@ -14,6 +15,29 @@ export default function RestaurantForm({ user }) {
     open_hours: "",
     urlImage: "https://www.opentable.com/img/restimages/2038.jpg",
   });
+
+  useEffect(() => {
+    async function getRestaurant() {
+      try {
+        const restaurantData = await restaurantService.getOneRestaurant(id);
+        if (restaurantData) {
+          const formData = {
+            vendor_id: restaurantData.vendor_id,
+            name: restaurantData.name,
+            description: restaurantData.description,
+            cuisine: restaurantData.cuisine,
+            location: restaurantData.location,
+            open_hours: restaurantData.open_hours,
+            urlImage: restaurantData.urlImage,
+          };
+          setFormData(formData);
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    }
+    getRestaurant();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,16 +47,8 @@ export default function RestaurantForm({ user }) {
   const handleSubmit = async (evt) => {
     evt.preventDefault();
     try {
-      restaurantService.create(formData);
-      setFormData({
-        vendor_id: user.email,
-        name: "",
-        description: "",
-        cuisine: "",
-        location: "",
-        open_hours: "",
-        urlImage: "https://www.opentable.com/img/restimages/2038.jpg",
-      });
+      restaurantService.updateRestaurant(id, formData);
+      setUpdateForm(false);
     } catch {}
   };
 
@@ -43,29 +59,29 @@ export default function RestaurantForm({ user }) {
         const url = await uploadFileToS3(file);
         setFormData({ ...formData, urlImage: url });
       } catch (error) {
-        console.error('Error uploading file:', error);
+        console.error("Error uploading file:", error);
       }
     }
   };
 
   const uploadFileToS3 = async (file) => {
     const s3 = new AWS.S3({
-      accessKeyId: 'AKIA5FTZCU47WYBWDPKO',
-      secretAccessKey: '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',
-      region: 'us-east-2',
+      accessKeyId: "AKIA5FTZCU47WYBWDPKO",
+      secretAccessKey: "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",
+      region: "us-east-2",
     });
 
     //generate a unique ID for the uploaded file
     const uniqueId = uuidv4().slice(0, 6);
-    const fileExtension = file.name.slice(file.name.lastIndexOf('.'));
+    const fileExtension = file.name.slice(file.name.lastIndexOf("."));
     const newFileName = `${uniqueId}${fileExtension}`;
 
     const params = {
-      Bucket: 'grubfinder-storage',
+      Bucket: "grubfinder-storage",
       Key: newFileName, // Key under which to store the file
       Body: file,
     };
-  
+
     const data = await s3.upload(params).promise();
     return data.Location; // Return the URL of the uploaded file
   };
@@ -116,7 +132,7 @@ export default function RestaurantForm({ user }) {
           onChange={handleChange}
           required
         />
-        <button type="submit">Add Restaurant</button>
+        <button type="submit">Update Restaurant</button>
       </form>
     </>
   );
