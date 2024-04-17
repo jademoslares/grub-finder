@@ -1,11 +1,11 @@
 /* CSS Custom Properties */
 :root {
-  --vibrant-orange: #FF5729;
-  --deep-teal: #008080;
-  --tan-2: #FFC800;
-  --light-gray: #F0F0F0;
-  --tan-3: #D3C1AE;
-  --dark-charcoal: #333333;
+  --white: #FFFFFF;
+  --tan-1: #FBF9F6;
+  --tan-2: #E7E2DD;
+  --tan-3: #E2D9D1;
+  --tan-4: #D3C1AE;
+  --orange: #F67F00;
   --text-light: #968c84;
   --text-dark: #615954;
 }
@@ -22,15 +22,26 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--light-gray);
+  /* background-color: var(--tan-4); */
+  background-image: url('https://e1.pxfuel.com/desktop-wallpaper/900/952/desktop-wallpaper-2560x1440-food-cooking.jpg');
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Do not repeat the image */
+  background-size: cover; /* Resize the background image to cover the entire container */
   padding: 2vmin;
-  height: 100vh;
+  /* height: 100vh; */
+  /* Line below set background color */
+  /* background: linear-gradient(0deg, #000000, #fdfdfd); */
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+#root {
+  height: 100%;
+}
+
 .align-ctr {
   text-align: center;
 }
@@ -41,6 +52,12 @@ code {
 
 .smaller {
   font-size: smaller;
+}
+
+.flex-ctr-ctr {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .flex-col {
@@ -59,7 +76,7 @@ code {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: var(--deep-teal);
+  background-color: var(--tan-1);
   color: var(--text-dark);
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
@@ -70,13 +87,13 @@ code {
 
 .form-container {
   padding: 3vmin;
-  background-color: var(--deep-teal);
+  background-color: var(--tan-1);
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
 }
 
 p.error-message {
-  color: var(--dark-charcoal);
+  color: var(--orange);
   text-align: center;
 }
 
@@ -104,14 +121,14 @@ input, select{
 }
 
 input:focus {
-  border-color: var(--dark-charcoal);
+  border-color: var(--orange);
 }
 
 button, a.button {
   margin: 1vmin;
   padding: 1vmin;
-  color: var(--vibrant-orange);
-  background-color: var(--dark-charcoal);
+  color: var(--white);
+  background-color: var(--orange);
   font-size: 2vmin;
   font-weight: bold;
   text-decoration: none;
@@ -134,7 +151,7 @@ button.btn-xs {
 
 button:disabled, form:invalid button[type="submit"] {
   cursor: not-allowed;
-  background-color: var(--light-gray);
+  background-color: var(--tan-4);
 }
 
 button[type="submit"] {

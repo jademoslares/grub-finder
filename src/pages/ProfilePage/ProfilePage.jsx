@@ -1,73 +1,89 @@
 import React, { useState, useEffect } from "react";
-import { getOne } from "../../utilities/users-api";
-import "./ProfilePage.css";
-import { Link } from "react-router-dom";
 import * as usersService from "../../utilities/users-service";
 import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
+import "./ProfilePage.css";
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
   const [updateForm, setUpdateForm] = useState(false);
 
-  useEffect(() => {
-    async function fetchUser() {
-      try {
-        const profile = await usersService.getOne(user.email);
-        setUserData(profile);
-      } catch (err) {
-        console.log(err);
+  useEffect(
+    function () {
+      async function fetchUser() {
+        try {
+          const profile = await usersService.getOne(user.email);
+          setUserData(profile);
+        } catch (err) {
+          console.log(err);
+        }
       }
-    }
-    fetchUser();
-  }, [user.email]);
+      fetchUser();
+    },
+    [user.email]
+  );
 
   return (
-    <div>
-      <h1>Settings</h1>
-      <br />
+    <>
       {userData && ( // Conditionally render only when userData is not null
-        <div>
-          <div className='profile'>
-          <img
-              className="profile-photo"
-              src={userData.user.urlImage}
-              alt="profile"
-            />
-            <br />
-            <br />
-            <div>
-              <strong>Name:</strong> {userData.user.username}
-            </div>
-            <div>
-              <strong>Email:</strong> {userData.user.email}
-            </div>
-            <div>
-              <strong>First Name:</strong> {userData.customer.firstname}
-            </div>
-            <div>
-              <strong>Last Name:</strong> {userData.customer.lastname}
-            </div>
-            <div>
-              <strong>Payment Info:</strong> {userData.customer.paymentinfo}
-            </div>
-            <div>
-              <strong>Phone Number:</strong> {userData.customer.phone}
-            </div>
-            <Link to="/profile">Edit my Profile</Link>
-          </div>
-          <hr />
-          {userData.user.role === "vendor" ? (
-            <div className='listed-restaurants'>
-              <h2>Restaurants Owned</h2>
-              <div>
-                <strong>Company Name:</strong> {userData.vendor.companyname}
-              </div>
-              <div>
-                <strong>Address:</strong> {userData.vendor.address}
-              </div>
-              <div>
-                <strong>Phone Number:</strong> {userData.vendor.phone}
-              </div>
+        <>
+          {!updateForm ? (
+            <div className="test-container">
+              <img src={userData.user.urlImage} alt="profile" />
+              <h2>User Information</h2>
+              <label>
+                <strong>Name:</strong>
+              </label>
+              <label>{userData.user.username}</label>
+
+              <label>
+                <strong>Email:</strong>
+              </label>
+              <label>{userData.user.email}</label>
+
+              <label>
+                <strong>Address:</strong>
+              </label>
+              <label>{userData.customer.address}</label>
+
+              <label>
+                <strong>First Name:</strong>
+              </label>
+              <label>{userData.customer.firstname}</label>
+
+              <label>
+                <strong>Last Name:</strong>
+              </label>
+              <label>{userData.customer.lastname}</label>
+
+              <label>
+                <strong>Payment Info:</strong>
+              </label>
+              <label>{userData.customer.paymentinfo}</label>
+
+              <label>
+                <strong>Phone Number:</strong>
+              </label>
+              <label>{userData.customer.phone}</label>
+
+              {userData.user.role === "vendor" && (
+                <>
+                  <h2>Vendor Information</h2>
+                  <label>
+                    <strong>Company Name:</strong>
+                  </label>
+                  <label>{userData.vendor.companyname}</label>
+
+                  <label>
+                    <strong>Address:</strong>
+                  </label>
+                  <label>{userData.vendor.address}</label>
+
+                  <label>
+                    <strong>Phone Number:</strong>
+                  </label>
+                  <label>{userData.vendor.phone}</label>
+                  </>
+              )}
             </div>
           ) : (
             // If updateForm is true, render the form
@@ -77,12 +93,12 @@ export default function ProfilePage({ user }) {
             {updateForm ? "X" : "Edit"}
           </button>
           {userData.user.role === "vendor" && !updateForm && (
-            <div>
+            <>
               <h2>Restaurants Owned</h2>
-            </div>
+            </>
           )}
-        </div>
+        </>
       )}
-    </div>
+    </>
   );
 }
