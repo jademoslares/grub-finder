@@ -1,60 +1,38 @@
-
-body {
-  display: flex;
-}
-
-.profile{
-  position: relative;
-  width: 20vw;
-  text-align: left;
-  padding: 20px;
-  max-width: 85vh;
-  height: 40vh;
-  border: 1px solid black;
-  background-size: cover;
-}
-
-.profile-photo {
-  width: 8vw;
-  height: 8vw;
-  padding: 5px;
-  border-radius: 50%;
-  border: 4px solid rgb(246, 66, 0);
-  background-size: cover;
-}
-
-.pic-upload {
-  height: 5vh;
-}
-
-h1 {
-  color: purple;
-  text-align: center;
-  margin-left: -3vw;
-}
-
-form {
+.test-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 10px;
-  margin-top: 5vh;
-  height: 3vh;
-  
-}
-
-.form-details {
-  display: flex;
-  flex-direction: column;
-  width: 25vw;
-  line-height: 1vh;
-
-}
-
-.profile-details {
-  display: grid;
-  grid-column: 2;
-  align-items: center;
+  grid-template-columns: 2fr 2fr;
+  gap: 1.25vmin;
+  color: var(--text-light);
   justify-content: center;
-  margin-top: 5vh;
-  padding: 30px;
+  align-items: center;
+  text-align: center;
+}
+
+label {
+  font-size: 2vmin;
+  display: flex;
+  align-items: center;
+}
+
+h2 {
+  font-size: 3vmin;
+  color: var(--text-dark);
+  text-align: center;
+  grid-column: span 2;
+}
+.edit-button {
+    position: absolute;
+    top: 0;
+    left: calc(100% - 70px); /* Adjust as needed */
+  }
+.background-card {
+    position: relative; /* Set relative positioning for the shared parent */
+}
+img{
+    width: 200px;
+    height: 200px;
+    grid-column: span 2;
+    place-self: center;
+    border-radius: 50%;
+    object-fit: cover;
 }
