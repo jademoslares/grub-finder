@@ -4,9 +4,40 @@ import "./RestaurantPage.css";
 import CardRestaurant from "react-tinder-card";
 import yelpData from "../../data/yelpData";
 import * as restaurantService from "../../utilities/restaurant-service";
+import SearchFilter from "../../components/SearchFilter/SearchFilter";
 
 export default function RestaurantPage() {
   const [restaurants, setRestaurants] = useState([]);
+
+//   const [filteredRestaurants, setFilteredRestaurants] = useState([
+//     ...restaurants,
+//   ]);
+//   const [filterOptions, setFilterOptions] = useState({
+//     category: "",
+//     priceRange: "",
+//     distance: "",
+//   });
+
+//   useEffect(() => {
+//     let filteredResults = [...restaurants];
+  
+//     if (filterOptions.category) {
+//       filteredResults = filteredResults.filter(
+//         (restaurant) => restaurant.category === filterOptions.category
+//       );
+//     }
+//     if (filterOptions.priceRange) {
+//       filteredResults = filteredResults.filter(
+//         (restaurant) => restaurant.price <= filterOptions.priceRange
+//       );
+//     }
+//     setFilteredRestaurants(filteredResults);
+//   }, [filterOptions]);
+
+// const resetFilters = () => {
+//     console.log('Resetting filtered restaurants...');
+//     setFilteredRestaurants([...restaurants]);
+//   };
 
   const shuffleArray = (array) => {
     for (let i = array.length - 1; i > 0; i--) {
