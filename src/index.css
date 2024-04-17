@@ -22,7 +22,7 @@ body {
   sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: var(--light-gray);
+  background-color: var(--deep-teal);
   padding: 2vmin;
   height: 100vh;
 }
@@ -68,12 +68,12 @@ code {
   font-size: 2vmin;
 }
 
-.form-container {
+/* .form-container {
   padding: 3vmin;
   background-color: var(--deep-teal);
   border: .1vmin solid var(--tan-3);
   border-radius: 1vmin;
-}
+} */
 
 p.error-message {
   color: var(--dark-charcoal);

@@ -11,7 +11,6 @@ export default function AuthPage({ setUser }) {
      🔍🐛Grub Finder
       🍽️ We know where to look 
       </div>
-
       <div className='lander-form'>
       <button onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
       { showSignUp ?

@@ -1,9 +1,5 @@
 
-body {
-  display: flex;
-}
-
-.profile{
+/* .profile{
   position: relative;
   width: 20vw;
   text-align: left;
@@ -12,7 +8,7 @@ body {
   height: 40vh;
   border: 1px solid black;
   background-size: cover;
-}
+} */
 
 .profile-photo {
   position: relative;
@@ -29,6 +25,7 @@ h1 {
   text-align: left;
   margin-left: -3vw;
 }
+
 
 /* .listed-restaurants {
   display: grid;

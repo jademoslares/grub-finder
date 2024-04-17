@@ -60,14 +60,17 @@ grid-template-columns: 1fr 2fr;
 
 .lander-form {
   display: grid;
-  grid-column: 1;
+  grid-column: 2;
   justify-self: center;
-  width: 20vw;
-  margin-left: 5vw;;
+  padding: 30px;
+  width: 30vw;
+  margin-left: 5vw;
+  background-color: yellow;
+  height: 40vh;
 }
 
 .grub {
   display: grid;
-  grid-column: 2;
+  grid-column: 1;
   justify-content: right;
 }

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
 import AWS from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
+import './ProfileUpdateForm.css';
 
 export default function ProfileUpdateForm({ user, setUpdateForm }) {
   const [formData, setFormData] = useState({
@@ -63,7 +64,7 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
   const handleSubmit = (evt) => {
     evt.preventDefault();
     try{
-      usersService.updateUser(user.email, formData);
+      usersService.updateUser(user.email, formData, );
       setUpdateForm(false);
     } catch (err){
       console.log(err);
@@ -105,18 +106,32 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
   };
 
   return (
+    <div className="profileForm">
+      <h2>User Information</h2>
     <form onSubmit={handleSubmit}>
       {/* Render form fields based on role */}
-      <img src={formData.urlImage} alt="profile" />
-      <input type="file" onChange={handleFileChange} />
-      <h2>User Information</h2>
+      <div className="images">
+      <img class="profile-photo"src={formData.urlImage} alt="profile"  width="150" height="150" />
+      <br />
+      <input className="pic-upload" type="file" onChange={handleFileChange} />
+     </div>
+
+     <div className="profile-details">
+      <h4>Login Info</h4>
+      <br />
       <label>Username</label>
       <input type="text" name="username" value={formData.username} onChange={handleChange} />
+
       <label>Email</label>
-      <label>{formData.email}</label>
+      <input type="text" name="email" value={formData.email} onChange={handleChange} />
+
       <label>Password</label>
       <input type="password" name="password" value={formData.password} onChange={handleChange} />
-
+      <br />
+      <br />
+      <br />
+    
+      <h4>Profile Info</h4>
       <label>First Name</label>
       <input type="text" name="firstname" value={formData.firstname} onChange={handleChange} />
       <label>Last Name</label>
@@ -128,7 +143,7 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
       <label>Payment Info</label>
       <input type="text" name="paymentinfo" value={formData.paymentinfo} onChange={handleChange} />
 
-      {formData.role === 'vendor' && (
+      {/* {formData.role === 'vendor' && (
         <>
         <h2>Vendor Information</h2>
           <label>Company Name</label>
@@ -138,8 +153,10 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
           <label>Phone</label>
           <input type="text" name="vendorphone" value={formData.vendorphone} onChange={handleChange} />
         </>
-      )}
+      )} */}
       <button type="submit">Update</button>
+      </div>
     </form>
+    </div>
   );
 }

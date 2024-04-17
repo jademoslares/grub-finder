@@ -23,7 +23,9 @@ export default function VendorAdminPage() {
       <Link to="/settings">Back to Settings</Link>
       {user && user.role === 'vendor' ? (
         <div>
-          
+            <Link to="/restaurant/form">
+            <button>Add Restaurant</button>
+          </Link>
           <MenuItems addMenuItem={addMenuItem} menuItems={menuItems} deleteMenuItem={deleteMenuItem} />
         <br />  
         <hr /> 
