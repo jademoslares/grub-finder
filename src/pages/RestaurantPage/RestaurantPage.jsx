@@ -97,4 +97,3 @@ const resetFilters = () => {
     </div>
   );
 }
-
