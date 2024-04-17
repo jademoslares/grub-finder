@@ -28,10 +28,8 @@ export default function RestaurantDetailPage({ user }) {
         if (userData) {
             console.log(userData.email);
             if (userData.email === user.email) {
-              console.log("Owner");
               setOwner(true);
             } else {
-              console.log("Not Owner");
               setOwner(false);
             }
           }
