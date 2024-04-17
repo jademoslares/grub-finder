@@ -28,11 +28,9 @@ export default function App() {
             <div className="background-card">
               {/* Route components in here */}
             <Routes>
-              <Route path="/restaurants" element={<RestaurantPage />}/>
-              <Route path="/orders/new" element={<NewOrderPage />} />
-              <Route path="/orders" element={<OrderHistoryPage />} />
+              <Route path="/" element={<RestaurantPage />}/>
               <Route path="/profile" element={<ProfilePage user={user} />} />
-              <Route path="/settings" element={<SettingsPage />} />
+              <Route path="/addRestaurant" element={<Test user={user} />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
               <Route path="/test" element={<Test user={user}/>} />
               <Route path="/:id" element={<RestaurantDetailPage user={user}/>} />

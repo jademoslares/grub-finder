@@ -17,23 +17,14 @@
   width: 200px;
 }
 
-#orderhistory {
-  top: 20%;
-  background-color: #04aa6d;
-}
-
-#neworder {
-  top: 30%;
-  background-color: #2196f3;
-}
 
 #restaurants {
-  top: 40%;
+  top: 20%;
   background-color: #2196f3;
 }
 
 #settings {
-  top: 50%;
+  top: 30%;
   background-color: #2196f3;
 }
 .dropbtn {
@@ -87,4 +78,6 @@
   font-family: "Rowdies", sans-serif;
   font-weight: 700;
   font-style: normal;
+  color:white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
 }

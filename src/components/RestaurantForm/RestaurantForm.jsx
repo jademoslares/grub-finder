@@ -74,7 +74,9 @@ export default function RestaurantForm({ user }) {
     <>
       <h1>Add a Restaurant</h1>
       <form onSubmit={handleSubmit}>
+        <div>
         <img className="formImage" src={formData.urlImage} alt="profile" />
+        </div>
         <input type="file" onChange={handleFileChange} />
         <label>Name</label>
         <input
