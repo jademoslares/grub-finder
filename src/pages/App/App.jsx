@@ -33,7 +33,7 @@ export default function App() {
               <Route path="/addRestaurant" element={<Test user={user} />} />
               <Route path="/VendorAdminPage" element={<VendorAdminPage />} />
               <Route path="/test" element={<Test user={user}/>} />
-              <Route path="/:id" element={<RestaurantDetailPage user={user}/>} />
+              <Route path="/:id/detail" element={<RestaurantDetailPage user={user}/>} />
             </Routes>
             </div>
           </div>
