@@ -6,6 +6,7 @@ module.exports = {
   index,
   getOneRestaurant,
   updateRestaurant,
+  addMenu,
 };
 
 async function newRestaurant(req, res) {
@@ -63,6 +64,19 @@ async function updateRestaurant(req, res) {
     }catch (err){
         res.json(err);
     }
+}
+
+async function addMenu(req, res) {
+  console.log(req.body);
+  console.log(req.params.id);
+  const restaurant = await Restaurant.findById(req.params.id);
+  restaurant.menu.push(req.body);
+  try{
+      await restaurant.save();
+      res.json(restaurant);
+  } catch (err) {
+      res.status(400).json(err);
+  }
 }
 
 
