@@ -1,18 +1,15 @@
 .App {
   text-align: center;
 }
-
 .App-logo {
   height: 4vmin;
   pointer-events: none;
 }
-
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
   }
 }
-
 .App-header {
   background-color: #282c34;
   min-height: 10vh;
@@ -23,11 +20,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
-
 .App-link {
   color: #61dafb;
 }
-
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
@@ -36,7 +31,6 @@
     transform: rotate(360deg);
   }
 }
-
 .background-card {
   background-color: white;
   display: flex;
@@ -52,22 +46,42 @@
   grid-template-columns: 1fr 1fr;
   grid-template-rows: 1fr 1fr;
 }
-
 .lander {
   display: grid;
-grid-template-columns: 1fr 2fr;
+grid-template-columns: 2fr 1fr;
+margin-top: 15vh;
+}
+.grub {
+  display: grid;
+  grid-column: 1;
+  justify-content: right;
+  margin-left: 15vw;
 }
 
 .lander-form {
   display: grid;
-  grid-column: 1;
+  grid-column: 3;
   justify-self: center;
-  width: 20vw;
-  margin-left: 5vw;;
+  padding: 40px;
+  width: 30vw;
+  margin-left: 10vw;
+  background-color: var(--light-gray);
+  height: 70vh;
 }
-
-.grub {
-  display: grid;
-  grid-column: 2;
-  justify-content: right;
+.grub h1 {
+  font-size: 3em;
+  color: var(--dark-charcoal);
+}
+.toggle {
+  display: block;
+  width: 100%;
+  height: 5vh;
+  padding: 5px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--vibrant-orange);
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
 }

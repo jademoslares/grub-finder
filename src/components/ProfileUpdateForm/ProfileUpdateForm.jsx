@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
 import AWS from 'aws-sdk';
 import { v4 as uuidv4 } from 'uuid';
+import './ProfileUpdateForm.css';
+import { Link } from 'react-router-dom';
 
 export default function ProfileUpdateForm({ user, setUpdateForm }) {
   const [formData, setFormData] = useState({
@@ -107,39 +109,62 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
   return (
     <form onSubmit={handleSubmit}>
       {/* Render form fields based on role */}
-      <img src={formData.urlImage} alt="profile" />
-      <input type="file" onChange={handleFileChange} />
+      <div className="form-image">
+      <img className="profile-photo"
+      src={formData.urlImage} alt="profile" style={{ width: "150px", height: "150px" }} />
+      <br />
+      <br />
+      <input className="pic-upload"type="file" onChange={handleFileChange} />
+      </div>
+      <div className="form-details">
       <h2>User Information</h2>
-      <label>Username</label>
-      <input type="text" name="username" value={formData.username} onChange={handleChange} />
-      <label>Email</label>
-      <label>{formData.email}</label>
-      <label>Password</label>
-      <input type="password" name="password" value={formData.password} onChange={handleChange} />
+      <span><label>Username </label> &nbsp;
+      <input type="text" name="username" value={formData.username} onChange={handleChange} /></span>
+      <br />
+      <span><label>Email </label> &nbsp;
+      <input type="text" name="password" value={formData.email} onChange={handleChange} /></span>
+      <br />
+      <span><label>Password </label> &nbsp;
+      <input type="password" name="password" value={formData.password} onChange={handleChange} /></span>
+      <br />
+      <span><label>First Name </label> &nbsp;
+      <input type="text" name="firstname" value={formData.firstname} onChange={handleChange} /></span>
+      <br />
+      <span><label>Last Name </label> &nbsp;
+      <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} /></span>
+      <br />
+      <span><label>Address </label> &nbsp;
+      <input type="text" name="customeraddress" value={formData.customeraddress} onChange={handleChange} /></span>
+      <br />
+      <span><label>Phone </label> &nbsp;
+      <input type="text" name="customerphone" value={formData.customerphone} onChange={handleChange} /></span>
+      <br />
+      <span><label>Payment Info </label> &nbsp;
+      <input type="text" name="paymentinfo" value={formData.paymentinfo} onChange={handleChange} /></span>
+      <br />
 
-      <label>First Name</label>
-      <input type="text" name="firstname" value={formData.firstname} onChange={handleChange} />
-      <label>Last Name</label>
-      <input type="text" name="lastname" value={formData.lastname} onChange={handleChange} />
-      <label>Address</label>
-      <input type="text" name="customeraddress" value={formData.customeraddress} onChange={handleChange} />
-      <label>Phone</label>
-      <input type="text" name="customerphone" value={formData.customerphone} onChange={handleChange} />
-      <label>Payment Info</label>
-      <input type="text" name="paymentinfo" value={formData.paymentinfo} onChange={handleChange} />
+      <button type="submit">Update</button>
 
       {formData.role === 'vendor' && (
         <>
+          <div>
+          <br />
+          <hr />
+          <br />
         <h2>Vendor Information</h2>
-          <label>Company Name</label>
+          <br />
+        <Link to="/VendorAdminPage"><button>View my Vendor Portal</button></Link>
+        </div>
+
+          {/* <label>Company Name</label>
           <input type="text" name="companyname" value={formData.companyname} onChange={handleChange} />
           <label>Address</label>
           <input type="text" name="vendoraddress" value={formData.vendoraddress} onChange={handleChange} />
           <label>Phone</label>
-          <input type="text" name="vendorphone" value={formData.vendorphone} onChange={handleChange} />
+          <input type="text" name="vendorphone" value={formData.vendorphone} onChange={handleChange} /> */}
         </>
       )}
-      <button type="submit">Update</button>
+    </div>
     </form>
   );
 }
