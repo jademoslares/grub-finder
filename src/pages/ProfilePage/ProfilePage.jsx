@@ -3,6 +3,7 @@ import * as usersService from "../../utilities/users-service";
 import * as restaurantService from "../../utilities/restaurant-service";
 import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
 import "./ProfilePage.css";
+import { Link } from "react-router-dom";
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
@@ -100,7 +101,7 @@ export default function ProfilePage({ user }) {
           {userData.user.role === "vendor" && !updateForm && (
             <>
               <h2>Restaurants Owned</h2>
-              <div>
+              <div className="restaurant-card-container">
                 {userRestaurants && userRestaurants.map((restaurant) => (
                   <div key={restaurant._id} className="restaurant-card">
                     <div>
@@ -118,6 +119,9 @@ export default function ProfilePage({ user }) {
                     <div>
                       <strong>Open Hours:</strong> {restaurant.open_hours}
                     </div>
+                    <Link to={`/${restaurant._id}/detail`}>
+                      <button>View Restaurant</button>
+                    </Link>
                   </div>
                 ))}
               </div>

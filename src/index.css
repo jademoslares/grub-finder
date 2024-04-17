@@ -24,7 +24,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   /* background-color: var(--tan-4); */
   background-image: url('https://e1.pxfuel.com/desktop-wallpaper/900/952/desktop-wallpaper-2560x1440-food-cooking.jpg');
-  background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
   background-size: cover; /* Resize the background image to cover the entire container */
   padding: 2vmin;

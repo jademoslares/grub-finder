@@ -9,7 +9,7 @@ export default function AuthPage({ setUser }) {
     <main className='lander'>
 
       <div className='lander-form'>
-      <h2>Sign Up or Log In</h2>
+      <h2 className='logo'>Sign Up or Log In</h2>
       <button className="toggle"
       onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
       { showSignUp ?
