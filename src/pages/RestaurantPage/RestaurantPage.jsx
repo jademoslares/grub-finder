@@ -27,6 +27,7 @@ export default function RestaurantPage() {
   return (
     <div className="CardRestaurant">
       <div className="cardRestaurant_container">
+      {/* {restaurants.map((restaurant) => ( */}
         {restaurants.map((restaurant) => (
           <CardRestaurant
             className="swipe"
@@ -54,3 +55,4 @@ export default function RestaurantPage() {
     </div>
   );
 }
+
