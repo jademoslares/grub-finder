@@ -26,7 +26,6 @@
   transition: 0.3s;
 }
 
-
 #mySidenav a:hover {
   width: 200px;
   background-color: hsl(180, 100%, 25%);
