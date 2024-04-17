@@ -16,7 +16,6 @@ export default function VendorAdminPage() {
   return (
     <div>
       <h1>Vendor Portal</h1>
-      <Link to="/settings">Back to Settings</Link>
       {user && user.role === 'vendor' ? (
         <div>
 

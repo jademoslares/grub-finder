@@ -2,21 +2,29 @@
 
 #mySidenav a {
   position: absolute;
-  left: -80px;
+  left: -110px;
   transition: 0.3s;
-  padding: 15px;
-  width: 100px;
+  padding: 18px;
+  width: 150px;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 15px;
   color: white;
   border-radius: 0 5px 5px 0;
 }
 
 #mySidenav a:hover {
   left: 0;
-  width: 200px;
+  width: 150px;
 }
 
+.Icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: x-large;
+
+}
 
 #restaurants {
   top: 20%;
