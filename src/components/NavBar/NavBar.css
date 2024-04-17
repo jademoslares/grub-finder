@@ -1,52 +1,43 @@
 /* NavBar.css */
 
-#mySidenav {
-  position: fixed;
-  display: flex;
-  flex-direction: column;
-  top: 0;
-  left: 0;
-  width: 15vw;
-  height: 100%;
-  background-color: hsl(13, 100%, 58%);
-  overflow-x: hidden;
-  padding-top: 20px; /* Adjust padding as needed */
-}
-
 #mySidenav a {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%; /* Adjust width to fill the entire div */
-  height: calc(100% / 6); /* Set height of each tab to be evenly spaced within the div */
-  text-decoration: none;
-  color: white;
-  border: 1px solid white;
-  font-size: 16px;
+  position: absolute;
+  left: -80px;
   transition: 0.3s;
+  padding: 15px;
+  width: 100px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  border-radius: 0 5px 5px 0;
 }
 
 #mySidenav a:hover {
+  left: 0;
   width: 200px;
-  background-color: hsl(180, 100%, 25%);
 }
 
 #orderhistory {
+  top: 20%;
+  background-color: #04aa6d;
 }
 
 #neworder {
+  top: 30%;
+  background-color: #2196f3;
 }
 
 #restaurants {
+  top: 40%;
+  background-color: #2196f3;
 }
 
 #settings {
+  top: 50%;
+  background-color: #2196f3;
 }
-
-.logout {
-  display: inline-block;
-  position: relative;
-  background-color: hsl(180, 100%, 25%);
+.dropbtn {
+  background-color: #04aa6d;
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -56,6 +47,9 @@
 .dropdown {
   position: relative;
   display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .dropdown-content {
@@ -75,7 +69,7 @@
 }
 
 .dropdown-content a:hover {
-  background-color: hsl(180, 100%, 25%);
+  background-color: #ddd;
 }
 
 .dropdown:hover .dropdown-content {
@@ -83,13 +77,12 @@
 }
 
 .dropdown:hover .dropbtn {
-  background-color: hsl(180, 100%, 25%);
+  background-color: #3e8e41;
 }
 
 .logo {
-  align-self: center;
-  font-size: 4rem;
-  padding: 2rem;
+  font-size: 50px;
+  padding-bottom: 1px;
   margin-bottom: 1px;
   font-family: "Rowdies", sans-serif;
   font-weight: 700;
