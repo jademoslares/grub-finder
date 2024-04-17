@@ -1,9 +1,7 @@
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/users-service";
 import "./NavBar.css";
-import { IoRestaurant } from "react-icons/io5";
-import { IoSettingsSharp } from "react-icons/io5";
-
+import { IoSettingsSharp, IoRestaurant } from "react-icons/io5";
 
 export default function NavBar({ user, setUser }) {
   function handleLogOut() {
@@ -15,11 +13,19 @@ export default function NavBar({ user, setUser }) {
     <>
       <nav id="mySidenav" className="navbar">
         <Link to="/" id="restaurants">
-           Restaurant &nbsp; <span className="Icon"> <IoRestaurant /></span>
+          Restaurant &nbsp;{" "}
+          <span className="Icon">
+            {" "}
+            <IoRestaurant />
+          </span>
         </Link>
         {user.role === "vendor" && (
           <Link to="/VendorAdminPage" id="settings">
-            Settings &nbsp; <span className="Icon"> <IoSettingsSharp /></span>
+            Settings &nbsp;{" "}
+            <span className="Icon">
+              {" "}
+              <IoSettingsSharp />
+            </span>
           </Link>
         )}
       </nav>
