@@ -18,3 +18,7 @@ export function updateRestaurant(id, data) {
 export function addMenu(id, data) {
     return restaurantAPI.addMenu(id, data);
 }
+
+export function getUserRestaurants(id) {
+    return restaurantAPI.getUserRestaurants(id);
+}

@@ -15,5 +15,7 @@ router.get('/:id', restaurantCtrl.getOneRestaurant);
 router.post('/:id/update', restaurantCtrl.updateRestaurant);
 // POST /api/restaurant/id/menu
 router.post('/:id/menu', restaurantCtrl.addMenu);
+// GET /api/restaurant/user/id
+router.get('/user/:id', restaurantCtrl.getUserRestaurants);
 
 module.exports = router;

@@ -20,3 +20,7 @@ export function updateRestaurant(id, data){
 export function addMenu(id, data){
     return sendRequest(`${BASE_URL}/${id}/menu`, 'POST', data);
 }
+
+export function getUserRestaurants(id){
+    return sendRequest(`${BASE_URL}/user/${id}`);
+}
