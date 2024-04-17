@@ -8,12 +8,15 @@ export default function AuthPage({ setUser }) {
   return (
     <main className='lander'>
       <div className='grub'>
-     🔍🐛Grub Finder
-      🍽️ We know where to look 
+        <h2>Grub Finder</h2>
+        <h2>🔍🐛</h2>
+        <h3> We know where to look </h3>
       </div>
 
       <div className='lander-form'>
-      <button onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
+      <h2>Sign Up or Log In</h2>
+      <button className="toggle"
+      onClick={() => setShowSignUp(!showSignUp)}>{showSignUp ? 'Log In' : 'Sign Up'}</button>
       { showSignUp ?
           <SignUpForm setUser={setUser} />
           :
