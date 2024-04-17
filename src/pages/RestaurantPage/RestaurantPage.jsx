@@ -1,21 +1,32 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./RestaurantPage.css";
 import CardRestaurant from "react-tinder-card";
-import SearchFilter from "../../components/SearchFilter/SearchFilter";
-import { restaurants } from "../../Data/dummyData";
 // import yelpData from "../../data/yelpData";
+import { restaurants as r } from "../../Data/dummyData";
+import * as restaurantService from "../../utilities/restaurant-service";
+import SearchFilter from "../../components/SearchFilter/SearchFilter";
 
 export default function RestaurantPage() {
-  // const [restaurants, setRestaurants] = useState(yelpData);
-  const [filteredRestaurants, setFilteredRestaurants] = useState([
-    ...restaurants,
-  ]);
+  const [restaurants, setRestaurants] = useState([]);
+
+  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [filterOptions, setFilterOptions] = useState({
     category: "",
     priceRange: "",
     distance: "",
   });
 
+  useEffect(() => {
+    async function mergeRestaurants() {
+      const userRestaurants = await restaurantService.getAllRestaurant();
+      const combinedRestaurants = [...r, ...userRestaurants];
+      const shuffledRestaurants = shuffleArray(combinedRestaurants);
+      setRestaurants(shuffledRestaurants);
+    }
+    mergeRestaurants();
+  }, []);
+  
   useEffect(() => {
     let filteredResults = [...restaurants];
   
@@ -30,46 +41,55 @@ export default function RestaurantPage() {
       );
     }
     setFilteredRestaurants(filteredResults);
-  }, [filterOptions]);
+  }, [filterOptions, restaurants]);
 
-  // useEffect(() => {
-  //   setRestaurants(shuffleArray(yelpData));
-  // }, []);
-
-  const resetFilters = () => {
+const resetFilters = () => {
     console.log('Resetting filtered restaurants...');
-    setFilteredRestaurants([...restaurants]);
+    setFilteredRestaurants([...restaurants, ...r]);
   };
 
-  // const shuffleArray = (array) => {
-  //   for (let i = array.length - 1; i > 0; i--) {
-  //     const j = Math.floor(Math.random() * (i + 1));
-  //     [array[i], array[j]] = [array[j], array[i]];
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  };
+
+  // useEffect(() => {
+  //   async function getAllRestaurant() {
+  //     const fetchRestaurants = await restaurantService.getAllRestaurant();
+  //     const shuffledRestaurants = shuffleArray(fetchRestaurants);
+  //     setRestaurants(shuffledRestaurants);
   //   }
-  //   return array;
-  // };
+  //   getAllRestaurant();
+  // }, []);
 
   return (
     <div className="CardRestaurant">
-      <SearchFilter
-        setFilterOptions={setFilterOptions}
-        resetFilters={resetFilters}
-      />
+      <SearchFilter setFilterOptions={setFilterOptions} resetFilters={resetFilters} />
       <div className="cardRestaurant_container">
-      {/* {restaurants.map((restaurant) => ( */}
+      
         {filteredRestaurants.map((restaurant) => (
           <CardRestaurant
             className="swipe"
-            // key={restaurant.restaurant_name}
             key={restaurant.name}
             preventSwipe={["up", "down"]}
           >
+            
             <div className="card">
-              {/* <h1>{restaurant.restaurant_name}</h1> */}
-              <br />
-              <h2>Restaurant: {restaurant.categories}</h2>
-              <br />
+            <img className="image" src={restaurant.urlImage} alt={restaurant.name} />
               <h2>{restaurant.name}</h2>
+              <br />
+              <h2>Description: {restaurant.description}</h2>
+              <br />
+              <h2>Cuisine: {restaurant.cuisine}</h2>
+              <br />
+              <h2>Location: {restaurant.location}</h2>
+              <br />
+              <h2>Open Hours: {restaurant.open_hours}</h2>
+              <br />
+              <Link to={`/${restaurant._id}`}>View Restaurant</Link>
             </div>
           </CardRestaurant>
         ))}
@@ -77,4 +97,3 @@ export default function RestaurantPage() {
     </div>
   );
 }
-
