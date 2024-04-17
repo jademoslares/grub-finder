@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import * as usersService from "../../utilities/users-service";
+import * as restaurantService from "../../utilities/restaurant-service";
 import ProfileUpdateForm from "../../components/ProfileUpdateForm/ProfileUpdateForm";
 import "./ProfilePage.css";
 
 export default function ProfilePage({ user }) {
   const [userData, setUserData] = useState(null);
   const [updateForm, setUpdateForm] = useState(false);
+  const [userRestaurants, setUserRestaurants] = useState(null);
 
   useEffect(
     function () {
@@ -13,6 +15,9 @@ export default function ProfilePage({ user }) {
         try {
           const profile = await usersService.getOne(user.email);
           setUserData(profile);
+
+          const userRestaurants = await restaurantService.getUserRestaurants(user.email);
+          setUserRestaurants(userRestaurants);
         } catch (err) {
           console.log(err);
         }
@@ -22,6 +27,7 @@ export default function ProfilePage({ user }) {
     [user.email]
   );
 
+  console.log(userRestaurants);
   return (
     <>
       {userData && ( // Conditionally render only when userData is not null
@@ -95,6 +101,27 @@ export default function ProfilePage({ user }) {
           {userData.user.role === "vendor" && !updateForm && (
             <>
               <h2>Restaurants Owned</h2>
+              <div>
+                {userRestaurants && userRestaurants.map((restaurant) => (
+                  <div key={restaurant._id} className="restaurant-card">
+                    <div>
+                      <strong>Name:</strong> {restaurant.name}
+                    </div>
+                    <div>
+                      <strong>Description:</strong> {restaurant.description}
+                    </div>
+                    <div>
+                      <strong>Location:</strong> {restaurant.location}
+                    </div>
+                    <div>
+                      <strong>Cuisine:</strong> {restaurant.cuisine}
+                    </div>
+                    <div>
+                      <strong>Open Hours:</strong> {restaurant.open_hours}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </>
           )}
         </>

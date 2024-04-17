@@ -7,6 +7,7 @@ module.exports = {
   getOneRestaurant,
   updateRestaurant,
   addMenu,
+  getUserRestaurants,
 };
 
 async function newRestaurant(req, res) {
@@ -80,15 +81,15 @@ async function addMenu(req, res) {
 }
 
 
-// async function getUserRestaurants(req, res) {
-//     try {
-//       console.log(req.params.id);
-//       const user = await User.findOne({email: req.params.id});
-//       const vendor = await Vendor.findOne({user: user._id});
-//       const restaurant = await Restaurant.findOne({vendor_id: vendor._id});
-//       console.log(restaurant);
-//       res.json(restaurant);
-//     } catch (err) {
-//       res.json(err);
-//     }
-//   }
+async function getUserRestaurants(req, res) {
+    try {
+      console.log(req.params.id);
+      const user = await User.findOne({email: req.params.id});
+      const vendor = await Vendor.findOne({user: user._id});
+      const restaurant = await Restaurant.find({vendor_id: vendor._id});
+      console.log(restaurant);
+      res.json(restaurant);
+    } catch (err) {
+      res.json(err);
+    }
+  }
