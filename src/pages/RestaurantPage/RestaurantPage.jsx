@@ -2,37 +2,36 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./RestaurantPage.css";
 import CardRestaurant from "react-tinder-card";
-// import yelpData from "../../data/yelpData";
-import { restaurants as r } from "../../Data/dummyData";
 import * as restaurantService from "../../utilities/restaurant-service";
 import SearchFilter from "../../components/SearchFilter/SearchFilter";
+// import { restaurants as r } from "../../Data/dummyData";
 
 export default function RestaurantPage() {
   const [restaurants, setRestaurants] = useState([]);
 
   const [filteredRestaurants, setFilteredRestaurants] = useState([]);
   const [filterOptions, setFilterOptions] = useState({
-    category: "",
+    cuisine: "",
     priceRange: "",
     distance: "",
   });
 
   useEffect(() => {
-    async function mergeRestaurants() {
-      const userRestaurants = await restaurantService.getAllRestaurant();
-      const combinedRestaurants = [...r, ...userRestaurants];
-      const shuffledRestaurants = shuffleArray(combinedRestaurants);
+    async function getAllRestaurant() {
+      const fetchRestaurants = await restaurantService.getAllRestaurant();
+      const shuffledRestaurants = shuffleArray(fetchRestaurants);
       setRestaurants(shuffledRestaurants);
     }
-    mergeRestaurants();
+    getAllRestaurant();
   }, []);
+
   
   useEffect(() => {
     let filteredResults = [...restaurants];
   
-    if (filterOptions.category) {
+    if (filterOptions.cuisine) {
       filteredResults = filteredResults.filter(
-        (restaurant) => restaurant.category === filterOptions.category
+        (restaurant) => restaurant.cuisine === filterOptions.cuisine
       );
     }
     if (filterOptions.priceRange) {
@@ -45,7 +44,7 @@ export default function RestaurantPage() {
 
 const resetFilters = () => {
     console.log('Resetting filtered restaurants...');
-    setFilteredRestaurants([...restaurants, ...r]);
+    setFilteredRestaurants([...restaurants]);
   };
 
   const shuffleArray = (array) => {
@@ -57,12 +56,13 @@ const resetFilters = () => {
   };
 
   // useEffect(() => {
-  //   async function getAllRestaurant() {
-  //     const fetchRestaurants = await restaurantService.getAllRestaurant();
-  //     const shuffledRestaurants = shuffleArray(fetchRestaurants);
+  //   async function mergeRestaurants() {
+  //     const userRestaurants = await restaurantService.getAllRestaurant();
+  //     const combinedRestaurants = [...userRestaurants];
+  //     const shuffledRestaurants = shuffleArray(combinedRestaurants);
   //     setRestaurants(shuffledRestaurants);
   //   }
-  //   getAllRestaurant();
+  //   mergeRestaurants();
   // }, []);
 
   return (

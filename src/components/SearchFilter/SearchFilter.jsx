@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { categories } from "../../Data/dummyData";
+import { cuisine } from "../../Data/dummyData";
 
 export default function SearchFilter({ setFilterOptions, resetFilters }) {
   const [selectedCategory, setSelectedCategory] = useState("");
   const [selectedPriceRange, setSelectedPriceRange] = useState("");
-  const [selectedDistance, setSelectedDistance] = useState("");
   const [filterVisible, setFilterVisible] = useState(false);
 
   const handleCategoryChange = (e) => {
@@ -15,16 +14,11 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
     setSelectedPriceRange(parseInt(e.target.value));
   };
 
-  const handleDistanceChange = (e) => {
-    setSelectedDistance(parseInt(e.target.value));
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     setFilterOptions({
-      category: selectedCategory,
+      cuisine: selectedCategory,
       priceRange: selectedPriceRange,
-      distance: selectedDistance,
     });
   };
 
@@ -33,7 +27,6 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
     console.log("Resetting filters...");
     setSelectedCategory("");
     setSelectedPriceRange(0);
-    setSelectedDistance(0);
     resetFilters();
   };
 
@@ -49,16 +42,16 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
       {filterVisible && (
         <form onSubmit={handleSubmit}>
           <div className="filter-item">
-            <label name="category">Category:</label>
+            <label name="cuisine">Cuisine:</label>
             <select
-              id="category"
+              id="cuisine"
               value={selectedCategory}
               onChange={handleCategoryChange}
             >
-              <option value="">Select category</option>
-              {categories.map((category) => (
-                <option key={category.id} value={category.name}>
-                  {category.name}
+              <option value="">Select Cuisine</option>
+              {cuisine.map((cuisine) => (
+                <option key={cuisine.id} value={cuisine.name}>
+                  {cuisine.name}
                 </option>
               ))}
             </select>
@@ -74,18 +67,6 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
               onChange={handlePriceChange}
             />
             <span>${selectedPriceRange}</span>
-          </div>
-          <div className="filter-item">
-            <label name="distance">Distance:</label>
-            <input
-              type="range"
-              id="distance"
-              min="0"
-              max="50"
-              value={selectedDistance}
-              onChange={handleDistanceChange}
-            />
-            <span>{selectedDistance} km</span>
           </div>
           <button type="submit">Apply Filters</button>
           <button onClick={handleReset}>Reset</button>
