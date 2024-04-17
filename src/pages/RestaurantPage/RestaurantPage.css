@@ -13,7 +13,6 @@
     border-radius: 20px;
     background-size: cover;
     background-position: center;
-
     background-color: white;
 }
 
@@ -30,4 +29,11 @@
 
 .swipe {
     position: absolute;
+}
+.image{
+    width: 50%;
+    height: 50%;
+    object-fit: cover;
+    border-radius: 50px;
+    z-index: 0;
 }

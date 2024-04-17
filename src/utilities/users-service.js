@@ -57,3 +57,7 @@ export function getOne(id) {
 export function updateUser(id, data) {
   return usersAPI.updateUser(id, data);
 }
+
+export function getOwner(id) {
+  return usersAPI.getOwner(id);
+}

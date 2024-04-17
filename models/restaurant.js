@@ -18,6 +18,7 @@ const restaurantSchema = new Schema({
   menu: [menuItemSchema],
   location: { type: String, required: true },
   open_hours: { type: String },
+  urlImage: { type: String, required: false },
 }, {
   timestamps: true
 });

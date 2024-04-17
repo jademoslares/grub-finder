@@ -7,3 +7,10 @@ export function getAllRestaurant() {
 export function create(restaurantData) {
     return restaurantAPI.addRestaurant(restaurantData);
 }
+
+export function getOneRestaurant(id) {
+    return restaurantAPI.getOneRestaurant(id);
+}
+export function updateRestaurant(id, data) {
+    return restaurantAPI.updateRestaurant(id, data);
+}
