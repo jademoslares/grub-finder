@@ -29,7 +29,7 @@ denied.
 - Bcrypt
 
 ## Getting Started
-Link to App: 
+Link to App: https://salty-garden-48822-8b55e17325be.herokuapp.com/
 
 Trello Board: https://trello.com/b/XuwkoMyg/grub-finder
 
