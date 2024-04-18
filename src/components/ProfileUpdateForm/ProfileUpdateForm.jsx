@@ -46,7 +46,6 @@ export default function ProfileUpdateForm({ user, setUpdateForm }) {
   
           setFormData(formData);
         }
-        console.log(userData);
       } catch (err) {
         console.log(err);
       }
