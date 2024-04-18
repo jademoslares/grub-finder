@@ -21,10 +21,8 @@ async function updateUser(req, res) {
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, SALT_ROUNDS);
     }
-    console.log(req.body);
     // Update the user in the db
     const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
-    console.log(updatedUser);
 
     // Depending on the role, update corresponding entries
     if (updatedUser.role === 'customer') {
