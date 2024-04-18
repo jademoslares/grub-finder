@@ -66,9 +66,9 @@ export default function RestaurantUpdateForm({ id, setUpdateForm }) {
 
   const uploadFileToS3 = async (file) => {
     const s3 = new AWS.S3({
-      accessKeyId: "AKIA5FTZCU47WYBWDPKO",
-      secretAccessKey: "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",
-      region: "us-east-2",
+      accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+      secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+      region: 'us-east-2',
     });
 
     //generate a unique ID for the uploaded file
@@ -77,7 +77,7 @@ export default function RestaurantUpdateForm({ id, setUpdateForm }) {
     const newFileName = `${uniqueId}${fileExtension}`;
 
     const params = {
-      Bucket: "grubfinder-storage",
+      Bucket: process.env.REACT_APP_S3_BUCKET,
       Key: newFileName, // Key under which to store the file
       Body: file,
     };
