@@ -11,7 +11,7 @@ Restaurant Swipe Card Display.
 ![Screenshot_2](https://i.imgur.com/cr77R4b.png)
 Restaurant Form.
 
-![Screenshot_3](https://i.imgur.com/1u6Naxg.png)
+![Screenshot_3](https://i.imgur.com/8YwdRIF.png)
 User/Vendor Form.
 
 ![Screenshot_4](https://i.imgur.com/1u6Naxg.png)
