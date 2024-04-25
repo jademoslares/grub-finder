@@ -60,7 +60,6 @@ async function getOneRestaurant(req, res) {
 async function updateRestaurant(req, res) {
     try{
         const restaurant = await Restaurant.findByIdAndUpdate(req.params.id, req.body, {new: true});
-        console.log(restaurant);
         res.status(200).json({ message: 'Restaurant updated successfully' });
     }catch (err){
         res.json(err);
@@ -68,8 +67,6 @@ async function updateRestaurant(req, res) {
 }
 
 async function addMenu(req, res) {
-  console.log(req.body);
-  console.log(req.params.id);
   const restaurant = await Restaurant.findById(req.params.id);
   restaurant.menu.push(req.body);
   try{
@@ -83,11 +80,9 @@ async function addMenu(req, res) {
 
 async function getUserRestaurants(req, res) {
     try {
-      console.log(req.params.id);
       const user = await User.findOne({email: req.params.id});
       const vendor = await Vendor.findOne({user: user._id});
       const restaurant = await Restaurant.find({vendor_id: vendor._id});
-      console.log(restaurant);
       res.json(restaurant);
     } catch (err) {
       res.json(err);

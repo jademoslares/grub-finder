@@ -1,6 +1,9 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const {User,Customer,Vendor} = require('../../models/user');
+const AWS = require('aws-sdk');
+const { v4: uuidv4 } = require('uuid');
+
 
 const SALT_ROUNDS = 6;
 
@@ -21,10 +24,8 @@ async function updateUser(req, res) {
     if (req.body.password) {
       req.body.password = await bcrypt.hash(req.body.password, SALT_ROUNDS);
     }
-    console.log(req.body);
     // Update the user in the db
     const updatedUser = await User.findByIdAndUpdate(userId, req.body, { new: true });
-    console.log(updatedUser);
 
     // Depending on the role, update corresponding entries
     if (updatedUser.role === 'customer') {
@@ -157,6 +158,48 @@ async function getOwner(req, res) {
     res.json(user);
   }catch(err){
     res.status(400).json('Owner not found');
+  }
+}
+
+async function addPicture(req, res) {
+  try {
+    const file = req.file; // Assuming you're using multer middleware to handle file uploads
+    if (!file) {
+      return res.status(400).json({ error: 'No file uploaded' });
+    }
+    const fileUrl = await uploadFileToS3(file); // Call the uploadFileToS3 function
+    res.status(200).json({ url: fileUrl })
+  } catch (err) {
+    console.log(err);
+    res.status(400).json(err);
+  }
+
+}
+
+async function uploadFileToS3(file){
+  const s3 = new AWS.S3({
+    accessKeyId: process.env.REACT_APP_AWS_ACCESS_KEY_ID,
+    secretAccessKey: process.env.REACT_APP_AWS_SECRET_ACCESS_KEY,
+    region: 'us-east-2',
+  });
+
+  // Generate a unique ID for the uploaded file
+  const uniqueId = uuidv4().slice(0, 6);
+  const fileExtension = file.originalname.slice(file.originalname.lastIndexOf('.'));
+  const newFileName = `${uniqueId}${fileExtension}`;
+
+  const params = {
+    Bucket: process.env.REACT_APP_S3_BUCKET,
+    Key: newFileName, // Key under which to store the file
+    Body: file.buffer, // Accessing the file buffer
+  };
+
+  try {
+    const data = await s3.upload(params).promise();
+    return data.Location; // Return the URL of the uploaded file
+  } catch (error) {
+    console.error('Error uploading file to S3:', error);
+    throw error; // Re-throw the error for handling at higher level
   }
 }
 

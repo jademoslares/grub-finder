@@ -24,7 +24,6 @@ export default function SearchFilter({ setFilterOptions, resetFilters }) {
 
   const handleReset = () => {
     // to check if reset is working with button
-    console.log("Resetting filters...");
     setSelectedCategory("");
     setSelectedPriceRange(0);
     resetFilters();

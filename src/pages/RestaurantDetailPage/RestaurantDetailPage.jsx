@@ -12,7 +12,7 @@ export default function RestaurantDetailPage({ user }) {
   const { id } = useParams();
   const [updateForm, setUpdateForm] = useState(false);
   const [menuForm, setMenuForm] = useState(false);
-  const [owner, setOwner] = useState(null);
+  const [owner , setOwner] = useState(null);
 
   useEffect(() => {
     async function fetchRestaurant() {
@@ -23,30 +23,24 @@ export default function RestaurantDetailPage({ user }) {
         }
         const vendorid = restaurantData.vendor_id;
         const userData = await usersService.getOwner(vendorid);
-
-        if (userData) {
-          setUserData(userData);
+        
+        if (userData){
+            setUserData(userData);
         }
 
         if (userData) {
-          console.log(userData.email);
-          if (userData.email === user.email) {
-            setOwner(true);
-          } else {
-            setOwner(false);
+            if (userData.email === user.email) {
+              setOwner(true);
+            } else {
+              setOwner(false);
+            }
           }
-        }
       } catch (err) {
         console.log(err);
       }
     }
     fetchRestaurant();
   }, []);
-
-  console.log(restaurant);
-
-  // Log restaurant outside of useEffect
-  //   console.log(userData);
   return (
     <>
       <div>
@@ -74,22 +68,19 @@ export default function RestaurantDetailPage({ user }) {
               <strong>Open Hours:</strong> {restaurant.open_hours}
             </div>
             <h2>Menu</h2>
-            <div className="menuContainer">
-              {restaurant &&
-                restaurant.menu.map((item) => (
-                  <div className="menuCard" key={item._id}>
-                    <div>
-                      <strong>Item Name:</strong> {item.item_name}
-                    </div>
-                    <div>
-                      <strong>Serving Size:</strong> {item.serving_size}
-                    </div>
-                    <div>
-                      <strong>Item Cost:</strong> {item.item_cost}
-                    </div>
-                  </div>
-                ))}
+          {restaurant && restaurant.menu.map((item) => (
+            <div className="menuCard" key={item._id}>
+              <div>
+                <strong>Item Name:</strong> {item.item_name}
+              </div>
+              <div>
+                <strong>Serving Size:</strong> {item.serving_size}
+              </div>
+              <div>
+                <strong>Item Cost:</strong> {item.item_cost}
+              </div>
             </div>
+          ))}
           </div>
         )}
         {updateForm && owner && (
@@ -98,23 +89,26 @@ export default function RestaurantDetailPage({ user }) {
           </>
         )}
         {!menuForm && owner && (
-          <button
-            className="edit-button"
-            onClick={() => setUpdateForm(!updateForm)}
-          >
-            {updateForm ? "X" : "Edit"}
-          </button>
+        <button
+          className="edit-button"
+          onClick={() => setUpdateForm(!updateForm)}
+        >
+          {updateForm ? "X" : "Edit"}
+        </button>
         )}
         {menuForm && owner && (
           <>
             <MenuItemForm setMenuForm={setMenuForm} id={id} />
           </>
         )}
-
+        
         {!updateForm && owner && (
-          <button className="" onClick={() => setMenuForm(!menuForm)}>
-            {menuForm ? "Cancel" : "Add Menu Item"}
-          </button>
+        <button
+          className=""
+          onClick={() => setMenuForm(!menuForm)}
+        >
+          {menuForm ? "Cancel" : "Add Menu Item"}
+        </button>
         )}
       </div>
     </>
